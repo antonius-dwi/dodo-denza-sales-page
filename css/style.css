@@ -211,12 +211,70 @@ a {
     background: #050607;
 }
 
+/* =========================================================
+   HOMEPAGE HERO — DESKTOP
+   Scoped to Homepage only.
+========================================================= */
+
 @media (min-width: 901px) {
     .homepage .hero-stage {
-        height: 590px;
         min-height: 590px;
+        height: 590px;
+    }
+
+    .homepage .hero-content {
+        min-height: 590px;
+        height: 590px;
+        padding-top: 56px;
+        padding-bottom: 24px;
+        align-items: flex-end;
+        box-sizing: border-box;
+    }
+
+    .homepage .hero-copy {
+        position: relative;
+        width: min(600px, 55%);
+    }
+
+    .homepage .hero-brand {
+        position: absolute;
+        top: -115px;
+        left: 0;
+        width: min(300px, 64%);
+        margin: 0;
+        transform: none;
+    }
+
+    .homepage .hero-eyebrow {
+        margin-bottom: 12px;
+        font-size: 0.64rem;
+    }
+
+    .homepage .hero h1 {
+        max-width: 580px;
+        font-size: clamp(3rem, 4.4vw, 5rem);
+        line-height: 0.9;
+    }
+
+    .homepage .hero-description {
+        max-width: 470px;
+        margin-top: 12px;
+        font-size: 0.88rem;
+        line-height: 1.55;
+    }
+
+    .homepage .hero-actions {
+        margin-top: 24px;
+    }
+
+    .homepage .hero-microcopy {
+        margin-top: 12px;
     }
 }
+
+/* =========================================================
+   HOMEPAGE HERO MEDIA
+========================================================= */
 
 .homepage .hero-slides,
 .homepage .hero-slide,
@@ -257,7 +315,7 @@ a {
 
 @media (min-width: 901px) {
     .homepage .hero-slide[data-model='d9'] .hero-slide-image {
-        transform: scale(1.1);
+        transform: scale(1);
         transform-origin: right center;
     }
 }
@@ -298,20 +356,26 @@ a {
 
 .hero-overlay {
     z-index: 1;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(3, 4, 5, 0.92) 0%,
-            rgba(3, 4, 5, 0.7) 30%,
-            rgba(3, 4, 5, 0.24) 58%,
-            rgba(3, 4, 5, 0.04) 100%
-        ),
-        linear-gradient(
-            0deg,
-            rgba(2, 3, 4, 0.72) 0%,
-            rgba(2, 3, 4, 0.14) 48%,
-            rgba(2, 3, 4, 0.18) 100%
-        );
+    background: none;
+    pointer-events: none;
+}
+
+.homepage .hero-copy {
+    position: relative;
+    z-index: 3;
+}
+
+.homepage .hero-copy::before {
+    content: '';
+    position: absolute;
+    inset: -80px -80px -80px -140px;
+    background: radial-gradient(
+        ellipse at left center,
+        rgba(3, 4, 5, 0.72) 0%,
+        rgba(3, 4, 5, 0.42) 34%,
+        rgba(3, 4, 5, 0) 68%
+    );
+    z-index: -1;
     pointer-events: none;
 }
 
@@ -382,17 +446,6 @@ a {
     font-weight: 400;
     line-height: 0.88;
     letter-spacing: -0.045em;
-}
-
-.hero-title {
-    max-width: 520px;
-    margin: 24px 0 0;
-    color: var(--color-text);
-    font-family: 'Times New Roman', Georgia, serif;
-    font-size: clamp(1.55rem, 2.1vw, 2.2rem);
-    font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
 }
 
 .hero-description {
@@ -635,19 +688,18 @@ a {
     transition: transform 500ms ease;
 }
 
-/* Desktop model-specific image framing */
 .homepage .hero-model-card--d9 img {
-    object-fit: contain;
+    object-fit: cover;
     object-position: center center;
 }
 
 .homepage .hero-model-card--b5 img {
-    object-fit: contain;
+    object-fit: cover;
     object-position: center center;
 }
 
 .homepage .hero-model-card--z9 img {
-    object-fit: contain;
+    object-fit: cover;
     object-position: center center;
 }
 
@@ -758,190 +810,199 @@ a {
     }
 }
 
+/* =========================================================
+   HOMEPAGE HERO — MOBILE
+   Preserves the approved mobile composition.
+========================================================= */
+
 @media (max-width: 600px) {
-    .hero-stage {
-        min-height: 760px;
+    .homepage .hero-stage {
+        min-height: 1350px;
+        height: 1350px;
     }
 
-    .hero-content {
-        min-height: 760px;
-        display: flex;
-        align-items: flex-start;
-        padding-top: 104px;
-        padding-bottom: 34px;
+    .homepage .hero-content {
+        position: relative;
+        min-height: 1350px;
+        height: 1350px;
+        display: block;
+        padding: 104px 0 0;
     }
 
-    .hero-overlay {
-        background:
-            linear-gradient(
-                180deg,
-                rgba(3, 4, 5, 0.38) 0%,
-                rgba(3, 4, 5, 0.12) 28%,
-                rgba(3, 4, 5, 0.56) 62%,
-                rgba(2, 3, 4, 0.96) 100%
-            ),
-            linear-gradient(90deg, rgba(3, 4, 5, 0.28) 0%, rgba(3, 4, 5, 0.02) 100%);
-    }
-
-    .hero-slide-image {
-        object-position: 58% center;
-    }
-
-    .hero-copy {
+    .homepage .hero-copy {
+        position: relative;
         width: 100%;
     }
 
-    .hero-brand {
+    .homepage .hero-brand {
+        position: relative;
+        top: auto;
+        left: auto;
         width: min(300px, 82%);
-        margin-bottom: 24px;
+        margin: 0 0 24px;
+        transform: none;
     }
 
-    .hero-eyebrow {
+    .homepage .hero-eyebrow {
         margin-bottom: 14px;
         font-size: 0.6rem;
         letter-spacing: 0.2em;
     }
 
-    .hero h1 {
+    .homepage .hero h1 {
         max-width: 360px;
         font-size: clamp(3.25rem, 14vw, 4.8rem);
         line-height: 0.9;
     }
 
-    .hero-title {
-        margin-top: 16px;
-        font-size: 1.42rem;
-    }
-
-    .hero-description {
+    .homepage .hero-description {
         max-width: 340px;
         margin-top: 12px;
         font-size: 0.82rem;
         line-height: 1.62;
     }
 
-    .hero-actions {
+    .homepage .hero-actions {
         display: grid;
         grid-template-columns: 1fr;
         gap: 8px;
         margin-top: 20px;
     }
 
-    .hero-actions .button {
-        width: 100%;
+    .homepage .hero-actions .button {
+        width: min(520px, 72%);
         min-height: 52px;
     }
 
-    .hero-talk-button,
-    .hero-explore-button {
+    .homepage .hero-talk-button,
+    .homepage .hero-explore-button {
         min-width: 0;
     }
 
-    .hero-microcopy {
+    .homepage .hero-microcopy {
         margin-top: 11px;
         font-size: 0.52rem;
         letter-spacing: 0.11em;
         white-space: nowrap;
     }
 
-    .hero-microcopy span {
-        margin-inline: 4px;
-    }
-
-    .hero-model-control {
+    .homepage .hero-model-control {
         position: absolute;
+        top: 430px;
         right: 20px;
-        top: 310px;
         width: 126px;
         margin: 0;
+        z-index: 3;
     }
 
-    .hero-model-name {
+    .homepage .hero-model-name {
         font-size: 1.22rem;
     }
 
-    .hero-model-positioning {
+    .homepage .hero-model-positioning {
         font-size: 0.68rem;
         line-height: 1.4;
     }
 
-    .hero-arrow-controls {
+    .homepage .hero-arrow-controls {
         gap: 8px;
         margin-top: 14px;
     }
 
-    .hero-arrow {
+    .homepage .hero-arrow {
         width: 42px;
         height: 42px;
     }
 
-    .hero-pagination {
-        margin-top: 18px;
+    .homepage .hero-slide-image {
+        width: 100%;
+        height: 125%;
+        top: 9%;
+        object-position: 58% center;
     }
 
-    .hero-feature-strip {
-        display: block;
+    .homepage .hero-pagination {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 22px;
+        justify-content: center;
+        margin-top: 0;
+        z-index: 3;
     }
 
-    .hero-feature {
-        min-height: 74px;
-        padding: 15px 20px;
-        gap: 16px;
+    .homepage .hero-feature-strip {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
-    .hero-feature + .hero-feature {
-        border-left: 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    .homepage .hero-feature {
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 18px 8px;
+        text-align: center;
     }
 
-    .hero-feature-icon {
+    .homepage .hero-feature + .hero-feature {
+        border-left: 1px solid rgba(255, 255, 255, 0.12);
+        border-top: 0;
+    }
+
+    .homepage .hero-feature-icon {
         width: 28px;
-        flex-basis: 28px;
+        flex: 0 0 28px;
         font-size: 1.65rem;
     }
 
-    .hero-feature-copy strong {
+    .homepage .hero-feature-copy strong {
         font-size: 0.95rem;
+        line-height: 1.15;
     }
 
-    .hero-feature-copy small {
-        margin-top: 4px;
-        font-size: 0.5rem;
+    .homepage .hero-feature-copy small {
+        margin-top: 7px;
+        font-size: 0.48rem;
+        line-height: 1.45;
+        letter-spacing: 0.1em;
     }
 
-    .hero-model-selector {
+    .homepage .hero-model-selector {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 7px;
         padding-top: 14px;
         padding-bottom: 14px;
     }
 
-    .hero-model-card {
+    .homepage .hero-model-card {
         min-height: 126px;
     }
 
-    .hero-model-card-copy {
+    .homepage .hero-model-card-copy {
         left: 10px;
         right: 8px;
         bottom: 10px;
     }
 
-    .hero-model-card-copy strong {
+    .homepage .hero-model-card-copy strong {
         font-size: 0.88rem;
     }
 
-    .hero-model-card-copy small {
+    .homepage .hero-model-card-copy small {
         max-width: 88px;
         font-size: 0.42rem;
         line-height: 1.4;
         letter-spacing: 0.07em;
     }
 
-    .hero-model-card-arrow {
+    .homepage .hero-model-card-arrow {
         display: none;
     }
 
-    .hero-scroll-indicator {
+    .homepage .hero-scroll-indicator {
         margin: 4px auto 22px;
         font-size: 0.5rem;
     }
@@ -1260,7 +1321,6 @@ button:focus-visible {
         --page-padding: 20px;
     }
 
-    /* ---------- Header ---------- */
     .nav-wrapper {
         min-height: 64px;
     }
@@ -1442,7 +1502,6 @@ button:focus-visible {
     color: var(--color-text);
 }
 
-/* ---------- Big Picture ---------- */
 .d9-experience-hero {
     position: relative;
     width: 100vw;
@@ -1511,7 +1570,6 @@ button:focus-visible {
     line-height: 1.75;
 }
 
-/* ---------- Feature Grid ---------- */
 .d9-experience-features {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1597,7 +1655,6 @@ button:focus-visible {
     line-height: 1.75;
 }
 
-/* ---------- Feature Images ---------- */
 .d9-experience-feature-image {
     width: 100%;
     margin: 0;
@@ -1623,7 +1680,6 @@ button:focus-visible {
     display: none;
 }
 
-/* ---------- Unified Model Footer ---------- */
 .model-footer-line {
     display: flex;
     align-items: center;
@@ -1651,7 +1707,6 @@ button:focus-visible {
         padding: 88px 0 104px;
     }
 
-    /* ---------- Big Picture ---------- */
     .d9-experience-hero {
         width: 100vw;
         margin-left: calc(50% - 50vw);
@@ -1700,7 +1755,6 @@ button:focus-visible {
         line-height: 1.65;
     }
 
-    /* ---------- Feature Grid ---------- */
     .d9-experience-features {
         display: flex;
         grid-template-columns: none;
@@ -1855,7 +1909,6 @@ body.is-mobile-device .why-d9-content p {
     color: var(--color-text);
 }
 
-/* ---------- Hero ---------- */
 .technology-safety-hero {
     position: relative;
     min-height: 620px;
@@ -1908,9 +1961,6 @@ body.is-mobile-device .why-d9-content p {
     line-height: 1.75;
 }
 
-/* ---------- Mark ---------- */
-
-/* ---------- Main Image ---------- */
 .technology-safety-image {
     position: relative;
     min-width: 0;
@@ -1938,7 +1988,6 @@ body.is-mobile-device .why-d9-content p {
     object-position: center;
 }
 
-/* ---------- Technology Pillars ---------- */
 .technology-safety-pillars {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1994,7 +2043,6 @@ body.is-mobile-device .why-d9-content p {
     line-height: 1.75;
 }
 
-/* ---------- Safety Systems ---------- */
 .technology-safety-systems {
     display: grid;
     grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.25fr);
@@ -2024,38 +2072,6 @@ body.is-mobile-device .why-d9-content p {
     color: rgba(255, 255, 255, 0.58);
 }
 
-.technology-safety-system-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.technology-safety-system {
-    min-height: 92px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    padding: 22px 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.technology-safety-system:nth-child(odd) {
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.technology-safety-system span {
-    color: rgba(255, 255, 255, 0.38);
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-}
-
-.technology-safety-system strong {
-    color: rgba(255, 255, 255, 0.78);
-    font-size: 0.82rem;
-    font-weight: 500;
-    line-height: 1.4;
-}
-
 .safety-systems-visual {
     width: 100%;
 }
@@ -2080,7 +2096,6 @@ body.is-mobile-device .technology-safety-section .container {
     max-width: none;
 }
 
-/* ---------- Keep desktop composition ---------- */
 body.is-mobile-device .technology-safety-hero {
     display: grid;
     grid-template-columns: 0.78fr 1.22fr;
@@ -2130,7 +2145,6 @@ body.is-mobile-device .technology-safety-image::after {
     );
 }
 
-/* ---------- Keep desktop pillar layout ---------- */
 body.is-mobile-device .technology-safety-pillars {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2162,7 +2176,6 @@ body.is-mobile-device .technology-safety-pillar p {
     line-height: 1.7;
 }
 
-/* ---------- Keep desktop Safety Systems layout ---------- */
 body.is-mobile-device .technology-safety-systems {
     display: grid;
     padding-top: 0;
@@ -2172,24 +2185,6 @@ body.is-mobile-device .technology-safety-systems {
 body.is-mobile-device .technology-safety-systems-intro h3 {
     max-width: none;
     font-size: 3.6rem;
-}
-
-body.is-mobile-device .technology-safety-system-list {
-    display: grid;
-    margin-top: 0;
-}
-
-body.is-mobile-device .technology-safety-system {
-    min-height: initial;
-    padding: initial;
-}
-
-body.is-mobile-device .technology-safety-system:nth-child(odd) {
-    border-right: initial;
-}
-
-body.is-mobile-device .technology-safety-system strong {
-    font-size: initial;
 }
 
 /* =========================================================
@@ -2209,7 +2204,6 @@ body.is-mobile-device .technology-safety-system strong {
     object-fit: cover;
 }
 
-/* ---------- Physical Mobile Device ---------- */
 body.is-mobile-device .technology-safety-pillar-image {
     max-width: 720px;
     margin-top: 30px;
@@ -2235,9 +2229,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
     position: relative;
 }
 
-/* =========================
-   INTRO
-========================= */
 .denza-lineup-intro {
     position: absolute;
     z-index: 5;
@@ -2278,9 +2269,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
     letter-spacing: 0.01em;
 }
 
-/* =========================
-   GRID
-========================= */
 .denza-lineup-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2288,9 +2276,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
     background: rgba(255, 255, 255, 0.14);
 }
 
-/* =========================
-   CARD
-========================= */
 .denza-lineup-card {
     position: relative;
     min-width: 0;
@@ -2320,9 +2305,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
     aspect-ratio: 16 / 9;
 }
 
-/* =========================================================
-   DENZA LINEUP — Z9 IMAGE FRAMING
-========================================================= */
 .denza-lineup-card--z9 .denza-lineup-image img {
     object-position: 68% center;
 }
@@ -2384,9 +2366,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
     transform: scale(1.025);
 }
 
-/* =========================
-   CONTENT — OVERLAY
-========================= */
 .denza-lineup-content {
     position: absolute;
     z-index: 3;
@@ -2451,9 +2430,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
     gap: 12px;
 }
 
-/* =========================================================
-   DENZA LINEUP — D9 COPY POSITION REFINEMENT
-========================================================= */
 .denza-lineup-card--d9 .denza-lineup-content {
     top: 65%;
     right: -1%;
@@ -2504,23 +2480,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
     margin-top: 20px;
 }
 
-.denza-lineup-intro::after {
-    white-space: pre-line;
-    display: block;
-    margin-top: 30px;
-    padding-top: 18px;
-    width: fit-content;
-    border-top: 1px solid rgba(255, 255, 255, 0.55);
-    font-size: 0.58rem;
-    line-height: 1.9;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.62);
-}
-
-/* =========================
-   B5 / Z9
-========================= */
 .denza-lineup-card--b5 .denza-lineup-content,
 .denza-lineup-card--z9 .denza-lineup-content {
     top: 0;
@@ -2550,9 +2509,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
     color: rgba(255, 255, 255, 0.68);
 }
 
-/* =========================================================
-   DENZA LINEUP — EDITORIAL TYPOGRAPHY
-========================================================= */
 .denza-lineup-section .denza-lineup-intro h2 {
     font-family: 'Times New Roman', Georgia, serif;
     font-weight: 400;
@@ -2594,9 +2550,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
     text-transform: uppercase;
 }
 
-/* =========================================================
-   DENZA LINEUP — D9 COPY POSITION
-========================================================= */
 .denza-lineup-card--d9 .denza-lineup-content {
     right: -1%;
     width: 260px;
@@ -2770,15 +2723,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
 .denza-b5-button:hover {
     transform: translateY(-2px);
     background: #edd9a8;
-}
-
-.denza-b5-text-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: rgba(255, 255, 255, 0.88);
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
 }
 
 .denza-b5-hero-side-note {
@@ -2977,9 +2921,11 @@ body.is-mobile-device .technology-safety-pillar-image img {
     .denza-b5-hero-inner {
         min-height: 500px;
     }
+
     .denza-b5-highlight-grid {
         gap: 18px;
     }
+
     .denza-b5-horizon-copy {
         padding-left: 34px;
         padding-right: 34px;
@@ -2996,10 +2942,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
     background: #080b0e;
     color: #f4f4f1;
 }
-
-/* =========================
-   HERO
-========================= */
 
 .denza-z9-hero {
     position: relative;
@@ -3142,10 +3084,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
     text-align: left;
 }
 
-/* =========================
-   HIGHLIGHTS
-========================= */
-
 .denza-z9-highlights {
     padding: 18px 0 24px;
     background: #0a0e12;
@@ -3205,10 +3143,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
 .denza-z9-small-rule {
     margin-top: 13px;
 }
-
-/* =========================
-   INTEREST / FORM
-========================= */
 
 .denza-z9-interest {
     display: grid;
@@ -3278,8 +3212,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
     line-height: 1.65;
     color: rgba(255, 255, 255, 0.7);
 }
-
-/* FORM */
 
 .denza-z9-form {
     width: 100%;
@@ -3364,10 +3296,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
     color: #e1c88f;
 }
 
-/* =========================
-   CLOSING VISUAL
-========================= */
-
 .denza-z9-closing {
     position: relative;
     height: 250px;
@@ -3409,26 +3337,92 @@ body.is-mobile-device .technology-safety-pillar-image img {
     margin-top: 12px;
 }
 
-/* =========================
-   FOOTER LINE
-========================= */
+@media (max-width: 900px) {
+    .denza-z9-hero,
+    .denza-z9-hero-inner {
+        min-height: 500px;
+    }
 
-.denza-z9-footer-line {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 30px;
-    padding: 19px 32px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    background: #080b0e;
-    color: rgba(255, 255, 255, 0.62);
-    font-size: 0.54rem;
+    .denza-z9-highlight-grid {
+        gap: 18px;
+    }
+
+    .denza-z9-interest-copy {
+        padding-left: 34px;
+        padding-right: 34px;
+    }
+}
+
+@media (max-width: 600px) {
+    .denza-z9-hero,
+    .denza-z9-hero-inner {
+        min-height: 540px;
+    }
+
+    .denza-z9-hero-inner {
+        align-items: flex-end;
+    }
+
+    .denza-z9-hero > img {
+        object-position: 62% center;
+    }
+
+    .denza-z9-hero-copy {
+        max-width: 88%;
+        padding-bottom: 18px;
+    }
+
+    .denza-z9-hero h2 {
+        font-size: clamp(2.8rem, 10vw, 4.2rem);
+    }
+
+    .denza-z9-side-note {
+        display: none;
+    }
+
+    .denza-z9-highlight-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .denza-z9-highlight figure {
+        height: 180px;
+    }
+
+    .denza-z9-interest {
+        grid-template-columns: 1fr;
+    }
+
+    .denza-z9-interest-image {
+        min-height: 300px;
+    }
+
+    .denza-z9-interest-copy {
+        padding: 42px 24px 48px;
+    }
+
+    .denza-z9-interest-copy h3 {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .denza-z9-closing {
+        height: 210px;
+    }
+}
+
+@media (max-width: 600px) {
+    .model-footer-line {
+        gap: 18px;
+        margin-top: 28px;
+        padding: 17px 20px;
+        font-size: 0.5rem;
+        letter-spacing: 0.18em;
+    }
 }
 
 /* =========================================================
    ABOUT DODO
 ========================================================= */
-
 .about-dodo-section {
     background: #050607;
 }
@@ -3594,100 +3588,9 @@ body.is-mobile-device .technology-safety-pillar-image img {
     background: #080b0e;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 900px) {
-    .denza-z9-hero,
-    .denza-z9-hero-inner {
-        min-height: 500px;
-    }
-
-    .denza-z9-highlight-grid {
-        gap: 18px;
-    }
-
-    .denza-z9-interest-copy {
-        padding-left: 34px;
-        padding-right: 34px;
-    }
-}
-
-@media (max-width: 600px) {
-    .denza-z9-hero,
-    .denza-z9-hero-inner {
-        min-height: 540px;
-    }
-
-    .denza-z9-hero-inner {
-        align-items: flex-end;
-    }
-
-    .denza-z9-hero > img {
-        object-position: 62% center;
-    }
-
-    .denza-z9-hero-copy {
-        max-width: 88%;
-        padding-bottom: 18px;
-    }
-
-    .denza-z9-hero h2 {
-        font-size: clamp(2.8rem, 10vw, 4.2rem);
-    }
-
-    .denza-z9-side-note {
-        display: none;
-    }
-
-    .denza-z9-highlight-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-
-    .denza-z9-highlight figure {
-        height: 180px;
-    }
-
-    .denza-z9-interest {
-        grid-template-columns: 1fr;
-    }
-
-    .denza-z9-interest-image {
-        min-height: 300px;
-    }
-
-    .denza-z9-interest-copy {
-        padding: 42px 24px 48px;
-    }
-
-    .denza-z9-interest-copy h3 {
-        font-size: clamp(2rem, 8vw, 3rem);
-    }
-
-    .denza-z9-closing {
-        height: 210px;
-    }
-
-    .denza-z9-footer-line {
-        padding: 17px 24px;
-    }
-}
-
-@media (max-width: 600px) {
-    .model-footer-line {
-        gap: 18px;
-        margin-top: 28px;
-        padding: 17px 20px;
-        font-size: 0.5rem;
-        letter-spacing: 0.18em;
-    }
-}
-
 /* =========================================================
    DEALER
-   ========================================================= */
+========================================================= */
 .dealer-section {
     position: relative;
     min-height: 800px;
@@ -3695,18 +3598,21 @@ body.is-mobile-device .technology-safety-pillar-image img {
     background: #050607;
     color: #fff;
 }
+
 .dealer-visual {
     position: absolute;
     inset: 0;
     height: 680px;
     z-index: 0;
 }
+
 .dealer-visual img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: 60% center;
 }
+
 .dealer-visual-overlay {
     position: absolute;
     inset: 0;
@@ -3727,6 +3633,7 @@ body.is-mobile-device .technology-safety-pillar-image img {
             rgba(3, 5, 7, 0.68) 100%
         );
 }
+
 .dealer-inner {
     position: relative;
     z-index: 1;
@@ -3734,10 +3641,12 @@ body.is-mobile-device .technology-safety-pillar-image img {
     display: flex;
     align-items: center;
 }
+
 .dealer-copy {
     width: min(500px, 40%);
     padding: 76px 0 72px;
 }
+
 .dealer-eyebrow {
     display: flex;
     align-items: center;
@@ -3749,11 +3658,13 @@ body.is-mobile-device .technology-safety-pillar-image img {
     font-weight: 600;
     letter-spacing: 0.28em;
 }
+
 .dealer-eyebrow i {
     width: 76px;
     height: 1px;
     background: rgba(210, 173, 91, 0.75);
 }
+
 .dealer-copy h2 {
     margin: 0;
     max-width: 650px;
@@ -3763,16 +3674,20 @@ body.is-mobile-device .technology-safety-pillar-image img {
     line-height: 0.9;
     letter-spacing: -0.05em;
 }
+
 .dealer-copy h2 span {
     display: block;
 }
+
 .dealer-copy h2 .dealer-headline-line {
     white-space: nowrap;
     color: #fff;
 }
+
 .dealer-copy h2 span:last-child {
     color: rgba(255, 255, 255, 0.72);
 }
+
 .dealer-copy > p {
     max-width: 420px;
     margin: 30px 0 0;
@@ -3781,6 +3696,7 @@ body.is-mobile-device .technology-safety-pillar-image img {
     font-size: 0.9rem;
     line-height: 1.75;
 }
+
 .dealer-location {
     display: flex;
     align-items: flex-start;
@@ -3788,6 +3704,7 @@ body.is-mobile-device .technology-safety-pillar-image img {
     max-width: 440px;
     margin-top: 34px;
 }
+
 .dealer-location-icon {
     flex: 0 0 auto;
     width: 24px;
@@ -3796,6 +3713,7 @@ body.is-mobile-device .technology-safety-pillar-image img {
     font-size: 1.55rem;
     line-height: 1;
 }
+
 .dealer-location strong {
     display: block;
     color: rgba(255, 255, 255, 0.92);
@@ -3805,6 +3723,7 @@ body.is-mobile-device .technology-safety-pillar-image img {
     letter-spacing: 0.2em;
     line-height: 1.65;
 }
+
 .dealer-location span {
     display: block;
     margin-top: 9px;
@@ -3813,6 +3732,7 @@ body.is-mobile-device .technology-safety-pillar-image img {
     font-size: 0.76rem;
     line-height: 1.65;
 }
+
 .dealer-button {
     display: inline-flex;
     align-items: center;
@@ -3829,10 +3749,12 @@ body.is-mobile-device .technology-safety-pillar-image img {
     letter-spacing: 0.2em;
     text-decoration: none;
 }
+
 .dealer-button span {
     font-size: 1.1rem;
     line-height: 1;
 }
+
 .dealer-experience {
     position: relative;
     z-index: 2;
@@ -3844,6 +3766,7 @@ body.is-mobile-device .technology-safety-pillar-image img {
     background: #050607;
     border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
+
 .dealer-experience-label {
     color: rgba(255, 255, 255, 0.9);
     font-family: var(--font-sans);
@@ -3851,6 +3774,7 @@ body.is-mobile-device .technology-safety-pillar-image img {
     font-weight: 600;
     letter-spacing: 0.25em;
 }
+
 .dealer-experience-item {
     display: grid;
     grid-template-columns: auto 36px 1fr;
@@ -3859,17 +3783,20 @@ body.is-mobile-device .technology-safety-pillar-image img {
     color: #fff;
     text-decoration: none;
 }
+
 .dealer-experience-item strong {
     color: #e2c67f;
     font-family: 'Times New Roman', Georgia, serif;
     font-size: 2rem;
     font-weight: 400;
 }
+
 .dealer-experience-item > span {
     width: 36px;
     height: 1px;
     background: rgba(255, 255, 255, 0.32);
 }
+
 .dealer-experience-item p {
     margin: 0;
     color: rgba(255, 255, 255, 0.78);
@@ -3877,27 +3804,33 @@ body.is-mobile-device .technology-safety-pillar-image img {
     font-size: 0.9rem;
     line-height: 1.25;
 }
+
 .dealer-footer {
     position: relative;
     z-index: 2;
     background: #050607;
 }
+
 .dealer-footer .model-footer-line {
     margin-top: 0;
 }
+
 @media (max-width: 600px) {
     .dealer-section {
         min-height: 0;
     }
+
     .dealer-visual {
         position: relative;
         left: auto;
         right: auto;
         height: 430px;
     }
+
     .dealer-visual img {
         object-position: 58% center;
     }
+
     .dealer-visual-overlay {
         background: linear-gradient(
             180deg,
@@ -3906,76 +3839,88 @@ body.is-mobile-device .technology-safety-pillar-image img {
             rgba(3, 5, 7, 0.92) 100%
         );
     }
+
     .dealer-inner {
         min-height: 0;
         margin-top: -150px;
         padding-bottom: 54px;
         align-items: flex-end;
     }
+
     .dealer-copy {
         width: 100%;
         padding: 0;
     }
+
     .dealer-eyebrow {
         margin-bottom: 20px;
     }
+
     .dealer-copy h2 {
         max-width: 360px;
         font-size: clamp(3rem, 13vw, 4.3rem);
     }
+
     .dealer-copy h2 .dealer-headline-line {
         white-space: normal;
     }
+
     .dealer-copy > p {
         max-width: 350px;
         margin-top: 22px;
         font-size: 0.8rem;
     }
+
     .dealer-location {
         margin-top: 26px;
         gap: 12px;
     }
+
     .dealer-location strong {
         font-size: 0.58rem;
     }
+
     .dealer-location span {
         font-size: 0.7rem;
     }
+
     .dealer-button {
         min-width: 235px;
         margin-top: 26px;
         padding: 16px 20px;
     }
+
     .dealer-experience {
         grid-template-columns: 1fr;
         gap: 18px;
         min-height: 0;
         padding: 24px 0 28px;
     }
+
     .dealer-experience-label {
         margin-bottom: 4px;
     }
+
     .dealer-experience-item {
         grid-template-columns: auto 30px 1fr;
     }
+
     .dealer-experience-item strong {
         font-size: 1.65rem;
     }
+
     .dealer-experience-item > span {
         width: 30px;
     }
+
     .dealer-experience-item p {
         font-size: 0.82rem;
     }
 }
 
 /* =========================================================
-   DENZA × HARMONY AUTO BRAND MARK
-   ========================================================= */
-/* =========================================================
    SECTION BRAND LOGO
 ========================================================= */
-
 .section-brand-logo {
     position: absolute;
     z-index: 10;
@@ -3990,14 +3935,12 @@ body.is-mobile-device .technology-safety-pillar-image img {
     object-fit: contain;
 }
 
-/* Visual sections: About Dodo / Dealer */
 .section-brand-logo--visual {
     top: 42px;
     left: max(32px, calc((100vw - var(--container-width)) / 2 + 32px));
     width: 360px;
 }
 
-/* Product / lineup sections */
 .section-brand-logo--rail {
     top: 56px;
     left: 32px;
@@ -4007,7 +3950,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
 /* =========================================================
    HOMEPAGE — FEATURE ICON SVG
 ========================================================= */
-
 .homepage .hero-feature-icon svg {
     width: 24px;
     height: 24px;
@@ -4030,11 +3972,10 @@ body.is-mobile-device .technology-safety-pillar-image img {
    HOMEPAGE HERO — DESKTOP COPY COMPRESSION
    Keep CTA & microcopy at original size.
 ========================================================= */
-
 @media (min-width: 901px) {
     .homepage .hero-content {
         padding-top: 56px;
-        padding-bottom: 24px;
+        padding-bottom: 70px;
         align-items: flex-end;
     }
 
@@ -4051,10 +3992,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
         margin-bottom: 8px;
     }
 
-    .homepage .hero-title {
-        margin-top: 10px;
-    }
-
     .homepage .hero-description {
         margin-top: 8px;
     }
@@ -4067,7 +4004,6 @@ body.is-mobile-device .technology-safety-pillar-image img {
         margin-top: 8px;
     }
 
-    /* Brand mark */
     .homepage .hero-brand {
         position: absolute;
         top: -115px;
@@ -4077,28 +4013,17 @@ body.is-mobile-device .technology-safety-pillar-image img {
         transform: none;
     }
 
-    /* Eyebrow */
     .homepage .hero-eyebrow {
         margin-bottom: 12px;
         font-size: 0.64rem;
     }
 
-    /* Main headline */
     .homepage .hero h1 {
         max-width: 580px;
         font-size: clamp(3rem, 4.4vw, 5rem);
         line-height: 0.9;
     }
 
-    /* Supporting headline */
-    .homepage .hero-title {
-        max-width: 460px;
-        margin-top: 16px;
-        font-size: clamp(1.3rem, 1.65vw, 1.8rem);
-        line-height: 1.15;
-    }
-
-    /* Description */
     .homepage .hero-description {
         max-width: 470px;
         margin-top: 12px;
@@ -4106,13 +4031,282 @@ body.is-mobile-device .technology-safety-pillar-image img {
         line-height: 1.55;
     }
 
-    /* Move CTA + microcopy lower through spacing,
-       without scaling either element. */
     .homepage .hero-actions {
         margin-top: 24px;
     }
 
     .homepage .hero-microcopy {
         margin-top: 12px;
+    }
+}
+
+/* =========================================================
+   HOMEPAGE — TEMPORARY DEVICE MOBILE COMPOSITION
+   Keep global viewport unchanged.
+   Scoped to Homepage only.
+========================================================= */
+@media (max-width: 600px) {
+    .homepage .hero-copy::before {
+        top: -56px;
+        left: -80px;
+        width: 145%;
+        height: calc(100% + 112px);
+        background: radial-gradient(
+            ellipse at center,
+            rgba(3, 4, 5, 0.58) 0%,
+            rgba(3, 4, 5, 0.24) 48%,
+            rgba(3, 4, 5, 0) 76%
+        );
+    }
+}
+
+@media (max-device-width: 600px) {
+    .homepage .hero-stage {
+        min-height: 1350px;
+        height: 1350px;
+    }
+
+    .homepage .hero-content {
+        min-height: 1350px;
+        height: 1350px;
+        display: block;
+        padding: 104px 0 0;
+    }
+
+    .homepage .hero-copy {
+        position: relative;
+        width: 100%;
+    }
+
+    .homepage .hero-brand {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: min(300px, 82%);
+        margin: 0 0 24px;
+        transform: none;
+    }
+
+    .homepage .hero-eyebrow {
+        margin-bottom: 20px;
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+    }
+
+    .homepage .hero h1 {
+        max-width: 360px;
+        font-size: clamp(3.25rem, 14vw, 4.8rem);
+        line-height: 0.94;
+    }
+
+    .homepage .hero-description {
+        max-width: 340px;
+        margin-top: 16px;
+        font-size: 0.82rem;
+        line-height: 1.7;
+    }
+
+    .homepage .hero-actions {
+        position: absolute;
+        top: 1080px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        width: min(600px, calc(100% - 24px));
+        margin: 0;
+    }
+
+    .homepage .hero-actions .button {
+        width: 100%;
+        min-width: 0;
+        min-height: 60px;
+        padding-inline: 16px;
+        font-size: 0.78rem;
+    }
+
+    .homepage .hero-talk-button,
+    .homepage .hero-explore-button {
+        min-width: 0;
+    }
+
+    .homepage .hero-microcopy {
+        position: absolute;
+        isolation: isolate;
+        top: 1152px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 24px);
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-size: 0.62rem;
+        letter-spacing: 0.12em;
+        line-height: 1.5;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .homepage .hero-microcopy::before {
+        content: '';
+        position: absolute;
+        isolation: isolate;
+        z-index: -1;
+        top: -18px;
+        left: -80px;
+        width: calc(100% + 160px);
+        height: 52px;
+        background: radial-gradient(
+            ellipse at center,
+            rgba(3, 4, 5, 0.58) 0%,
+            rgba(3, 4, 5, 0.26) 48%,
+            rgba(3, 4, 5, 0) 78%
+        );
+        pointer-events: none;
+    }
+
+    .homepage .hero-microcopy span {
+        margin-inline: 4px;
+    }
+
+    .homepage .hero-model-control {
+        position: absolute;
+        top: 430px;
+        right: 20px;
+        width: 126px;
+        margin: 0;
+        z-index: 3;
+    }
+
+    .homepage .hero-model-name {
+        font-size: 1.22rem;
+    }
+
+    .homepage .hero-model-positioning {
+        font-size: 0.68rem;
+        line-height: 1.4;
+    }
+
+    .homepage .hero-arrow-controls {
+        gap: 8px;
+        margin-top: 14px;
+    }
+
+    .homepage .hero-arrow {
+        width: 42px;
+        height: 42px;
+    }
+
+    .homepage .hero-slide[data-model='d9'] .hero-slide-image {
+        width: 100%;
+        height: 80%;
+        top: 0;
+        scale: 1.9;
+        object-position: 22% center;
+    }
+
+    .homepage .hero-slide[data-model='b5'] .hero-slide-image {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        object-position: 50% center;
+    }
+
+    .homepage .hero-slide[data-model='z9'] .hero-slide-image {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        object-position: 50% center;
+    }
+
+    .homepage .hero-pagination {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 22px;
+        justify-content: center;
+        margin-top: 0;
+        z-index: 3;
+    }
+
+    .homepage .hero-feature-strip {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .homepage .hero-feature {
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 18px 8px;
+        text-align: center;
+    }
+
+    .homepage .hero-feature + .hero-feature {
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 0;
+    }
+
+    .homepage .hero-feature-icon {
+        width: 28px;
+        flex: 0 0 28px;
+        font-size: 1.65rem;
+    }
+
+    .homepage .hero-feature-copy {
+        min-width: 0;
+    }
+
+    .homepage .hero-feature-copy strong {
+        font-size: 0.95rem;
+        line-height: 1.15;
+    }
+
+    .homepage .hero-feature-copy small {
+        margin-top: 7px;
+        font-size: 0.48rem;
+        line-height: 1.45;
+        letter-spacing: 0.1em;
+    }
+
+    .homepage .hero-model-selector {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+
+    .homepage .hero-model-card {
+        min-height: 126px;
+    }
+
+    .homepage .hero-model-card-copy {
+        left: 10px;
+        right: 8px;
+        bottom: 10px;
+    }
+
+    .homepage .hero-model-card-copy strong {
+        font-size: 0.88rem;
+    }
+
+    .homepage .hero-model-card-copy small {
+        max-width: 88px;
+        font-size: 0.42rem;
+        line-height: 1.4;
+        letter-spacing: 0.07em;
+    }
+
+    .homepage .hero-model-card-arrow {
+        display: none;
+    }
+
+    .homepage .hero-scroll-indicator {
+        margin: 4px auto 22px;
+        font-size: 0.5rem;
     }
 }
