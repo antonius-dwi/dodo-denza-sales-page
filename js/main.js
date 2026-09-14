@@ -153,32 +153,117 @@ if (heroSection) {
     const heroSlides = [...heroSection.querySelectorAll('.hero-slide')];
     const heroDots = [...heroSection.querySelectorAll('.hero-dot')];
     const heroCards = [...heroSection.querySelectorAll('.hero-model-card')];
+    const heroVideos = heroSlides.map((slide) => slide.querySelector('.hero-slide-video'));
+
     const heroModelNumber = heroSection.querySelector('.hero-model-number');
     const heroModelName = heroSection.querySelector('.hero-model-name');
     const heroModelPositioning = heroSection.querySelector('.hero-model-positioning');
     const heroExplore = heroSection.querySelector('.hero-explore-button');
     const heroPrev = heroSection.querySelector('.hero-prev');
     const heroNext = heroSection.querySelector('.hero-next');
+
     let activeIndex = 0;
+    let imageTimer = null;
+    let activeVideoIndex = null;
+
+    const clearImageTimer = () => {
+        if (imageTimer) {
+            clearTimeout(imageTimer);
+            imageTimer = null;
+        }
+    };
+
+    const stopAllHeroVideos = () => {
+        heroVideos.forEach((video, index) => {
+            if (!video) return;
+
+            video.pause();
+            video.currentTime = 0;
+
+            heroSlides[index].classList.remove('is-video-playing');
+        });
+
+        activeVideoIndex = null;
+        heroSection.classList.remove('is-hero-video-playing');
+    };
+
+    const startActiveVideo = (index) => {
+        const slide = heroSlides[index];
+        const video = heroVideos[index];
+
+        if (!slide || !video || index !== activeIndex) return;
+
+        const playVideo = () => {
+            if (index !== activeIndex) return;
+
+            video.currentTime = 0;
+
+            const playPromise = video.play();
+
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        if (index !== activeIndex) {
+                            video.pause();
+                            return;
+                        }
+
+                        activeVideoIndex = index;
+                        slide.classList.add('is-video-playing');
+                        heroSection.classList.add('is-hero-video-playing');
+                    })
+                    .catch(() => {
+                        slide.classList.remove('is-video-playing');
+                        heroSection.classList.remove('is-hero-video-playing');
+                    });
+            }
+        };
+
+        if (video.readyState >= 3) {
+            playVideo();
+        } else {
+            video.addEventListener('canplay', playVideo, { once: true });
+            video.load();
+        }
+    };
+
+    const scheduleActiveVideo = () => {
+        clearImageTimer();
+
+        imageTimer = setTimeout(() => {
+            imageTimer = null;
+
+            if (activeIndex === null) return;
+
+            startActiveVideo(activeIndex);
+        }, 2500);
+    };
 
     const setHeroModel = (nextIndex) => {
+        clearImageTimer();
+        stopAllHeroVideos();
+
         activeIndex = (nextIndex + heroModels.length) % heroModels.length;
+
         const model = heroModels[activeIndex];
 
         heroSlides.forEach((slide, index) => {
             const isActive = index === activeIndex;
+
             slide.classList.toggle('is-active', isActive);
             slide.setAttribute('aria-hidden', String(!isActive));
         });
 
         heroDots.forEach((dot, index) => {
             const isActive = index === activeIndex;
+
             dot.classList.toggle('is-active', isActive);
             dot.setAttribute('aria-selected', String(isActive));
         });
 
         heroCards.forEach((card, index) => {
             const isActive = index === activeIndex;
+
             card.classList.toggle('is-active', isActive);
             card.setAttribute('aria-pressed', String(isActive));
         });
@@ -186,33 +271,62 @@ if (heroSection) {
         heroModelNumber.textContent = model.number;
         heroModelName.textContent = model.name;
         heroModelPositioning.textContent = model.positioning;
+
         heroExplore.textContent = '';
 
         const label = document.createElement('span');
         label.textContent = model.exploreLabel;
+
         const arrow = document.createElement('span');
         arrow.setAttribute('aria-hidden', 'true');
         arrow.textContent = '→';
+
         heroExplore.append(label, arrow);
         heroExplore.href = model.exploreTarget;
+
+        scheduleActiveVideo();
     };
 
-    heroPrev?.addEventListener('click', () => setHeroModel(activeIndex - 1));
-    heroNext?.addEventListener('click', () => setHeroModel(activeIndex + 1));
+    heroVideos.forEach((video, index) => {
+        if (!video) return;
+
+        video.addEventListener('ended', () => {
+            if (index !== activeIndex) return;
+
+            stopAllHeroVideos();
+            setHeroModel(activeIndex + 1);
+        });
+    });
+
+    heroPrev?.addEventListener('click', () => {
+        setHeroModel(activeIndex - 1);
+    });
+
+    heroNext?.addEventListener('click', () => {
+        setHeroModel(activeIndex + 1);
+    });
 
     heroDots.forEach((dot, index) => {
-        dot.addEventListener('click', () => setHeroModel(index));
+        dot.addEventListener('click', () => {
+            setHeroModel(index);
+        });
     });
 
     heroCards.forEach((card, index) => {
-        card.addEventListener('click', () => setHeroModel(index));
+        card.addEventListener('click', () => {
+            setHeroModel(index);
+        });
     });
 
     heroSection.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowLeft') setHeroModel(activeIndex - 1);
-        if (event.key === 'ArrowRight') setHeroModel(activeIndex + 1);
+        if (event.key === 'ArrowLeft') {
+            setHeroModel(activeIndex - 1);
+        }
+
+        if (event.key === 'ArrowRight') {
+            setHeroModel(activeIndex + 1);
+        }
     });
 
     setHeroModel(0);
 }
-
