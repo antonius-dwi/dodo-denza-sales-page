@@ -10,11 +10,7 @@
         />
         <link rel="stylesheet" href="css/style.css" />
     </head>
-
     <body>
-        <!-- =========================================================
-        HEADER
-        ========================================================= -->
         <header class="site-header">
             <div class="container nav-wrapper">
                 <a href="index.html" class="brand">
@@ -23,12 +19,35 @@
                 </a>
 
                 <nav class="main-nav" id="main-nav">
-                    <a href="#models">Models</a>
-                    <a href="#why-d9">Why D9</a>
-                    <a href="#about-dodo">About Dodo</a>
-                    <a href="#dealer">Dealer</a>
-                    <a href="#test-drive">Test Drive</a>
-                    <a href="#test-drive" class="mobile-nav-cta">Book Test Drive</a>
+                    <div class="nav-models">
+                        <button
+                            class="nav-models-toggle"
+                            type="button"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                        >
+                            <span>Models</span>
+                        </button>
+
+                        <div class="nav-models-menu">
+                            <a href="d9.html">DENZA D9</a>
+                            <a href="b5.html">DENZA B5</a>
+                            <a href="z9.html">DENZA Z9</a>
+                        </div>
+                    </div>
+
+                    <a href="index.html#about-dodo">About Dodo</a>
+                    <a href="index.html#testimonials">Testimonial</a>
+                    <a href="index.html#dealer">Dealer</a>
+
+                    <a
+                        href="https://wa.me/6288294745477?text=Hi%20Dodo%2C%20I%27d%20like%20to%20learn%20more%20about%20DENZA."
+                        class="mobile-nav-cta"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Talk to Dodo
+                    </a>
                 </nav>
 
                 <a
@@ -58,11 +77,7 @@
                 </button>
             </div>
         </header>
-
         <main>
-            <!-- =========================================================
-            PAGE 1 — HOMEPAGE HERO
-            ========================================================= -->
             <div class="homepage">
                 <section class="hero" aria-label="DENZA model showcase">
                     <div class="hero-stage">
@@ -172,7 +187,6 @@
                                         href="#d9-experience"
                                     >
                                         <span>EXPLORE DENZA D9</span>
-                                        <span aria-hidden="true">→</span>
                                     </a>
                                 </div>
                                 <p class="hero-microcopy">
@@ -294,12 +308,12 @@
                         </a>
                     </div>
 
-                    <div class="container hero-model-selector" aria-label="DENZA model selector">
-                        <button
+                    <div class="container hero-model-selector" aria-label="DENZA models">
+                        <!-- D9 -->
+                        <a
                             class="hero-model-card hero-model-card--d9 is-active"
-                            type="button"
-                            data-model-target="d9"
-                            aria-pressed="true"
+                            href="d9.html"
+                            aria-label="Explore DENZA D9"
                         >
                             <img
                                 src="assets/images/hero/d9-hero.jpeg"
@@ -311,12 +325,13 @@
                                 <small>Premium Electric MPV</small>
                             </span>
                             <span class="hero-model-card-arrow" aria-hidden="true">→</span>
-                        </button>
-                        <button
+                        </a>
+
+                        <!-- B5 -->
+                        <a
                             class="hero-model-card hero-model-card--b5"
-                            type="button"
-                            data-model-target="b5"
-                            aria-pressed="false"
+                            href="b5.html"
+                            aria-label="Explore DENZA B5"
                         >
                             <img
                                 src="assets/images/denza/lineup/b5-lineup.webp"
@@ -328,12 +343,13 @@
                                 <small>A Bolder Perspective</small>
                             </span>
                             <span class="hero-model-card-arrow" aria-hidden="true">→</span>
-                        </button>
-                        <button
+                        </a>
+
+                        <!-- Z9 -->
+                        <a
                             class="hero-model-card hero-model-card--z9"
-                            type="button"
-                            data-model-target="z9"
-                            aria-pressed="false"
+                            href="z9.html"
+                            aria-label="Explore DENZA Z9"
                         >
                             <img
                                 src="assets/images/denza/lineup/z9-lineup.webp"
@@ -345,7 +361,7 @@
                                 <small>A Higher Horizon</small>
                             </span>
                             <span class="hero-model-card-arrow" aria-hidden="true">→</span>
-                        </button>
+                        </a>
                     </div>
 
                     <a
@@ -358,302 +374,6 @@
                     </a>
                 </section>
 
-                <!-- =========================================================
-                PAGE 3 — WHY D9 SECTION
-                ========================================================= -->
-                <section class="why-d9-section" id="why-d9">
-                    <div class="container">
-                        <div class="why-d9-intro">
-                            <span class="section-eyebrow">WHY D9</span>
-                            <h2>
-                                Designed around
-                                <span>the people inside.</span>
-                            </h2>
-                            <p>
-                                More than premium mobility. The DENZA D9 brings together first-class
-                                comfort, intelligent technology, and space designed for every
-                                journey.
-                            </p>
-                        </div>
-
-                        <div class="why-d9-list">
-                            <article class="why-d9-item">
-                                <span class="why-d9-number">01</span>
-                                <div class="why-d9-content">
-                                    <h3>First-Class Comfort</h3>
-                                    <p>
-                                        Second-row captain seats with massage, ventilation, and
-                                        electric legrests create a first-class experience for every
-                                        passenger.
-                                    </p>
-                                </div>
-                            </article>
-
-                            <article class="why-d9-item">
-                                <span class="why-d9-number">02</span>
-                                <div class="why-d9-content">
-                                    <h3>Space for Everyone</h3>
-                                    <p>
-                                        A 2+2+3 seating configuration combines generous passenger
-                                        space with flexible luggage capacity for everyday journeys.
-                                    </p>
-                                </div>
-                            </article>
-
-                            <article class="why-d9-item">
-                                <span class="why-d9-number">03</span>
-                                <div class="why-d9-content">
-                                    <h3>Intelligent by Design</h3>
-                                    <p>
-                                        A connected cabin experience with intelligent displays, OTA
-                                        updates, Apple CarPlay, and Android Auto.
-                                    </p>
-                                </div>
-                            </article>
-
-                            <article class="why-d9-item">
-                                <span class="why-d9-number">04</span>
-                                <div class="why-d9-content">
-                                    <h3>Confidence on Every Journey</h3>
-                                    <p>
-                                        Advanced driver assistance and safety technologies are
-                                        designed to provide greater confidence on the road.
-                                    </p>
-                                </div>
-                            </article>
-                        </div>
-
-                        <div class="model-footer-line">
-                            <span>Technology drives elegance</span>
-                            <span>DENZA D9</span>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- =========================================================
-                D9 EXPERIENCE
-                ========================================================= -->
-                <section class="d9-experience-section" id="d9-experience">
-                    <div class="container">
-                        <figure class="d9-experience-hero">
-                            <img
-                                src="assets/images/denza/d9-interior.jpg"
-                                alt="DENZA D9 interior with premium second-row captain seats and panoramic roof"
-                            />
-                            <div class="d9-experience-hero-overlay"></div>
-                            <figcaption class="d9-experience-hero-content">
-                                <span class="section-eyebrow">D9 EXPERIENCE</span>
-                                <h2>
-                                    A cabin designed
-                                    <span>around comfort.</span>
-                                </h2>
-                                <p>
-                                    Every journey feels different in the DENZA D9. With a spacious
-                                    cabin, refined materials, and thoughtful details, it's a space
-                                    where comfort comes naturally.
-                                </p>
-                            </figcaption>
-                        </figure>
-
-                        <div class="d9-experience-features">
-                            <article class="d9-experience-feature">
-                                <span class="d9-experience-number">01</span>
-                                <div class="d9-experience-feature-copy">
-                                    <h3>Second-Row Comfort</h3>
-                                    <p>
-                                        Second-row captain seats bring first-class comfort with
-                                        massage, ventilation, electric legrests, and generous
-                                        adjustment.
-                                    </p>
-                                </div>
-                                <figure class="d9-experience-feature-image">
-                                    <img
-                                        src="assets/images/denza/d9-comfort.jpg"
-                                        alt="DENZA D9 captain seat"
-                                        loading="lazy"
-                                    />
-                                </figure>
-                                <span class="d9-experience-note">RELAX, YOUR WAY</span>
-                            </article>
-
-                            <article class="d9-experience-feature">
-                                <span class="d9-experience-number">02</span>
-                                <div class="d9-experience-feature-copy">
-                                    <h3>Space for Everyone</h3>
-                                    <p>
-                                        A 2+2+3 seating layout balances passenger comfort with
-                                        flexible luggage space, from
-                                        <span class="nowrap">410 L up to 2,310 L</span>.
-                                    </p>
-                                </div>
-                                <figure class="d9-experience-feature-image">
-                                    <img
-                                        src="assets/images/denza/d9-space.jpg"
-                                        alt="DENZA D9 cabin and rear seating space"
-                                        loading="lazy"
-                                    />
-                                </figure>
-                                <span class="d9-experience-note">MORE POSSIBILITIES</span>
-                            </article>
-
-                            <article class="d9-experience-feature">
-                                <span class="d9-experience-number">03</span>
-                                <div class="d9-experience-feature-copy">
-                                    <h3>Connected Cabin</h3>
-                                    <p>
-                                        Stay connected with a 15.6-inch intelligent display,
-                                        10.25-inch 3D instrument cluster, OTA updates, Apple
-                                        CarPlay, and Android Auto.
-                                    </p>
-                                </div>
-                                <figure class="d9-experience-feature-image">
-                                    <img
-                                        src="assets/images/denza/d9-dashboard.png"
-                                        alt="DENZA D9 cockpit with intelligent display"
-                                        loading="lazy"
-                                    />
-                                </figure>
-                                <span class="d9-experience-note">TECHNOLOGY IN HARMONY</span>
-                            </article>
-                        </div>
-
-                        <div
-                            class="d9-experience-slider-indicator"
-                            aria-label="D9 Experience slides"
-                        >
-                            <button
-                                type="button"
-                                class="d9-experience-dot is-active"
-                                aria-label="Show slide 1"
-                                aria-current="true"
-                            ></button>
-                            <button
-                                type="button"
-                                class="d9-experience-dot"
-                                aria-label="Show slide 2"
-                            ></button>
-                            <button
-                                type="button"
-                                class="d9-experience-dot"
-                                aria-label="Show slide 3"
-                            ></button>
-                        </div>
-
-                        <div class="model-footer-line">
-                            <span>Technology drives elegance</span>
-                            <span>DENZA D9</span>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- =========================================================
-                TECHNOLOGY & SAFETY
-                ========================================================= -->
-                <section class="technology-safety-section" id="technology-safety">
-                    <div class="container">
-                        <!-- Hero -->
-                        <div class="technology-safety-hero">
-                            <div class="technology-safety-copy">
-                                <span class="section-eyebrow">TECHNOLOGY &amp; SAFETY</span>
-                                <h2>
-                                    Confidence, built into
-                                    <span>every journey.</span>
-                                </h2>
-                                <p>
-                                    Advanced technology and comprehensive safety systems work
-                                    quietly in the background, so you can focus on what matters most
-                                    — the people inside.
-                                </p>
-                            </div>
-
-                            <figure class="technology-safety-image">
-                                <img
-                                    src="assets/images/denza/d9-cockpit.jpg"
-                                    alt="DENZA D9 cockpit with intelligent displays"
-                                    loading="lazy"
-                                />
-                            </figure>
-                        </div>
-
-                        <!-- Technology Pillars -->
-                        <div class="technology-safety-pillars">
-                            <article class="technology-safety-pillar">
-                                <span class="technology-safety-number">01</span>
-                                <h3>Intelligent Cockpit</h3>
-                                <figure class="technology-safety-pillar-image">
-                                    <img
-                                        src="assets/images/denza/d9-intelegent-cockpit.webp"
-                                        alt="DENZA D9 intelligent cockpit"
-                                        loading="lazy"
-                                    />
-                                </figure>
-                                <p>
-                                    A connected driving experience with intelligent displays, OTA
-                                    updates, Apple CarPlay, and Android Auto.
-                                </p>
-                            </article>
-
-                            <article class="technology-safety-pillar">
-                                <span class="technology-safety-number">02</span>
-                                <h3>e-Platform 3.0</h3>
-                                <figure class="technology-safety-pillar-image">
-                                    <img
-                                        src="assets/images/denza/d9-eplatform.webp"
-                                        alt="DENZA D9 e-Platform 3.0"
-                                        loading="lazy"
-                                    />
-                                </figure>
-                                <p>
-                                    An advanced EV platform designed to support efficient
-                                    performance, stability, and everyday electric mobility.
-                                </p>
-                            </article>
-
-                            <article class="technology-safety-pillar">
-                                <span class="technology-safety-number">03</span>
-                                <h3>Complete Protection</h3>
-                                <figure class="technology-safety-pillar-image">
-                                    <img
-                                        src="assets/images/denza/d9-airbag.webp"
-                                        alt="DENZA D9 airbag protection system"
-                                        loading="lazy"
-                                    />
-                                </figure>
-                                <p>
-                                    Multi-row airbags, high-strength body structure, and advanced
-                                    safety systems help protect what matters most.
-                                </p>
-                            </article>
-                        </div>
-
-                        <!-- Safety Systems -->
-                        <div class="technology-safety-systems">
-                            <div class="technology-safety-systems-intro">
-                                <span class="section-eyebrow">SAFETY SYSTEMS</span>
-                                <h3>
-                                    A safer tomorrow,
-                                    <span>for the people who matter.</span>
-                                </h3>
-                            </div>
-
-                            <div class="safety-systems-visual">
-                                <img
-                                    src="assets/images/denza/d9-safety-systems.webp"
-                                    alt="DENZA D9 safety systems"
-                                />
-                            </div>
-                        </div>
-
-                        <div class="model-footer-line">
-                            <span>Technology drives elegance</span>
-                            <span>DENZA D9</span>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- =========================================================
-                DENZA LINEUP
-                ========================================================= -->
                 <section class="denza-lineup-section" id="models">
                     <div class="section-brand-logo section-brand-logo--rail">
                         <img
@@ -683,7 +403,11 @@
 
                         <div class="denza-lineup-grid">
                             <!-- D9 -->
-                            <article class="denza-lineup-card denza-lineup-card--d9">
+                            <a
+                                href="d9.html"
+                                class="denza-lineup-card denza-lineup-card--d9"
+                                aria-label="Explore DENZA D9"
+                            >
                                 <figure class="denza-lineup-image">
                                     <img
                                         src="assets/images/denza/lineup/d9-lineup.webp"
@@ -696,15 +420,19 @@
                                     <h3>DENZA D9</h3>
                                     <p class="denza-lineup-model-type">Premium Electric MPV</p>
                                     <div class="denza-lineup-content-line"></div>
-                                    <a href="#d9-experience" class="denza-lineup-link">
+                                    <span class="denza-lineup-link">
                                         Explore D9
                                         <span aria-hidden="true">→</span>
-                                    </a>
+                                    </span>
                                 </div>
-                            </article>
+                            </a>
 
                             <!-- B5 -->
-                            <article class="denza-lineup-card denza-lineup-card--b5">
+                            <a
+                                href="b5.html"
+                                class="denza-lineup-card denza-lineup-card--b5"
+                                aria-label="Explore DENZA B5"
+                            >
                                 <figure class="denza-lineup-image">
                                     <img
                                         src="assets/images/denza/lineup/b5-lineup.webp"
@@ -716,15 +444,19 @@
                                     <h3>DENZA B5</h3>
                                     <p>A Bolder Perspective</p>
                                     <div class="denza-lineup-content-line"></div>
-                                    <a href="#b5" class="denza-lineup-link">
+                                    <span class="denza-lineup-link">
                                         Explore B5
-                                        <span aria-hidden="true">←</span>
-                                    </a>
+                                        <span aria-hidden="true">→</span>
+                                    </span>
                                 </div>
-                            </article>
+                            </a>
 
                             <!-- Z9 -->
-                            <article class="denza-lineup-card denza-lineup-card--z9">
+                            <a
+                                href="z9.html"
+                                class="denza-lineup-card denza-lineup-card--z9"
+                                aria-label="Explore DENZA Z9"
+                            >
                                 <figure class="denza-lineup-image">
                                     <img
                                         src="assets/images/denza/lineup/z9-lineup.webp"
@@ -736,12 +468,12 @@
                                     <h3>DENZA Z9</h3>
                                     <p>A Higher Horizon</p>
                                     <div class="denza-lineup-content-line"></div>
-                                    <a href="#z9" class="denza-lineup-link">
+                                    <span class="denza-lineup-link">
                                         Explore Z9
                                         <span aria-hidden="true">→</span>
-                                    </a>
+                                    </span>
                                 </div>
-                            </article>
+                            </a>
                         </div>
 
                         <div class="model-footer-line">
@@ -751,386 +483,6 @@
                     </div>
                 </section>
 
-                <!-- =========================================================
-                DENZA B5 EXPERIENCE
-                ========================================================= -->
-                <section class="denza-b5-section" id="b5">
-                    <div class="section-brand-logo section-brand-logo--rail">
-                        <img
-                            src="assets/images/denza/denza-harmony-logo.png"
-                            alt="DENZA Harmony Auto"
-                            loading="lazy"
-                        />
-                    </div>
-
-                    <div class="denza-b5-hero">
-                        <img
-                            src="assets/images/denza/b5/b5-hero.webp"
-                            alt="DENZA B5 on rugged terrain"
-                            loading="lazy"
-                        />
-                        <div class="denza-b5-hero-overlay"></div>
-                        <div class="container denza-b5-hero-inner">
-                            <div class="denza-b5-hero-copy">
-                                <span class="denza-b5-eyebrow">DENZA B5</span>
-                                <h2>A BOLDER<br />PERSPECTIVE.</h2>
-                                <p>
-                                    A different character.<br />A more confident way<br />to move
-                                    forward.
-                                </p>
-                                <div class="denza-b5-rule"></div>
-                                <span class="denza-b5-note"
-                                    >PREMIUM ELECTRIFIED SUV<br />FOR A WIDER TOMORROW</span
-                                >
-                                <div class="denza-b5-actions">
-                                    <a
-                                        href="https://wa.me/6288294745477?text=Hi%20Dodo%2C%20I%27m%20interested%20in%20the%20DENZA%20B5%20and%20would%20like%20to%20know%20more%20about%20the%20pre-order."
-                                        class="denza-b5-button"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        >PRE-ORDER B5 <span aria-hidden="true">→</span></a
-                                    >
-                                </div>
-                            </div>
-                            <span class="denza-b5-hero-side-note"
-                                >EXPLORE<br />FURTHER<br />LIVE BOLDER</span
-                            >
-                        </div>
-                    </div>
-
-                    <div class="denza-b5-highlights" id="b5-highlights">
-                        <div class="container">
-                            <div class="denza-b5-highlight-grid">
-                                <article class="denza-b5-highlight">
-                                    <figure>
-                                        <img
-                                            src="assets/images/denza/b5/b5-design.webp"
-                                            alt="DENZA B5 front design detail"
-                                            loading="lazy"
-                                        />
-                                    </figure>
-                                    <span class="denza-b5-index">01</span>
-                                    <h3>BOLD DESIGN</h3>
-                                    <p>
-                                        A modern and distinctive presence that stands out, on every
-                                        terrain and in every setting.
-                                    </p>
-                                    <div class="denza-b5-small-rule"></div>
-                                </article>
-                                <article class="denza-b5-highlight">
-                                    <figure>
-                                        <img
-                                            src="assets/images/denza/b5/b5-capability.webp"
-                                            alt="DENZA B5 rear three-quarter view"
-                                            loading="lazy"
-                                        />
-                                    </figure>
-                                    <span class="denza-b5-index">02</span>
-                                    <h3>CONFIDENT CAPABILITY</h3>
-                                    <p>
-                                        Engineered for more possibilities, giving you the confidence
-                                        to go further in your everyday and beyond.
-                                    </p>
-                                    <div class="denza-b5-small-rule"></div>
-                                </article>
-                                <article class="denza-b5-highlight">
-                                    <figure>
-                                        <img
-                                            src="assets/images/denza/b5/b5-technology.webp"
-                                            alt="DENZA B5 interior technology"
-                                            loading="lazy"
-                                        />
-                                    </figure>
-                                    <span class="denza-b5-index">03</span>
-                                    <h3>ADVANCED TECHNOLOGY</h3>
-                                    <p>
-                                        Intelligent systems and electrified performance working
-                                        together for a smoother, smarter, and more connected
-                                        journey.
-                                    </p>
-                                    <div class="denza-b5-small-rule"></div>
-                                </article>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="denza-b5-horizon">
-                        <div class="denza-b5-horizon-image">
-                            <img
-                                src="assets/images/denza/b5/b5-horizon.webp"
-                                alt="DENZA B5 viewed from above on rugged terrain"
-                                loading="lazy"
-                            />
-                            <span class="denza-b5-horizon-label"
-                                >MORE<br />PLACES<br />MORE<br />PERSPECTIVES</span
-                            >
-                        </div>
-                        <div class="denza-b5-horizon-copy">
-                            <span class="denza-b5-eyebrow">DENZA B5</span>
-                            <h3>Not Just a Destination.<br />A Broader Horizon.</h3>
-                            <p>
-                                The DENZA B5 is made for those who see more in every journey.
-                                Combining refined design, capable performance, and intelligent
-                                technology, it opens a wider perspective for the road ahead.
-                            </p>
-                            <a
-                                href="https://wa.me/6288294745477?text=Hi%20Dodo%2C%20I%27m%20interested%20in%20the%20DENZA%20B5%20and%20would%20like%20to%20know%20more%20about%20the%20pre-order."
-                                class="denza-b5-button"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                >PRE-ORDER B5 <span aria-hidden="true">→</span></a
-                            >
-                        </div>
-                    </div>
-
-                    <div class="denza-b5-destinations">
-                        <div class="denza-b5-destination">
-                            <img
-                                src="assets/images/denza/b5/b5-city.webp"
-                                alt="Road through a forest"
-                                loading="lazy"
-                            /><span>CITY<br />COMMUTE</span><i></i>
-                        </div>
-                        <div class="denza-b5-destination">
-                            <img
-                                src="assets/images/denza/b5/b5-weekend.webp"
-                                alt="Mountain lake landscape"
-                                loading="lazy"
-                            /><span>WEEKEND<br />ESCAPE</span><i></i>
-                        </div>
-                        <div class="denza-b5-destination">
-                            <img
-                                src="assets/images/denza/b5/b5-tomorrow.webp"
-                                alt="Mountain horizon at dusk"
-                                loading="lazy"
-                            /><span>A WIDER<br />TOMORROW</span><i></i>
-                        </div>
-                    </div>
-
-                    <div class="model-footer-line" id="b5-interest">
-                        <span>Technology drives elegance</span>
-                        <span>DENZA B5</span>
-                    </div>
-                </section>
-
-                <!-- =========================================================
-                DENZA Z9 — COMING SOON
-                ========================================================= -->
-                <section class="denza-z9-section" id="z9">
-                    <div class="section-brand-logo section-brand-logo--rail">
-                        <img
-                            src="assets/images/denza/denza-harmony-logo.png"
-                            alt="DENZA Harmony Auto"
-                            loading="lazy"
-                        />
-                    </div>
-
-                    <!-- HERO -->
-                    <div class="denza-z9-hero">
-                        <img
-                            src="assets/images/denza/z9/z9-hero.webp"
-                            alt="DENZA Z9"
-                            loading="lazy"
-                        />
-
-                        <div class="denza-z9-hero-overlay"></div>
-
-                        <div class="container denza-z9-hero-inner">
-                            <div class="denza-z9-hero-copy">
-                                <span class="denza-z9-eyebrow">DENZA Z9</span>
-
-                                <h2>
-                                    A HIGHER
-                                    <span>HORIZON.</span>
-                                </h2>
-
-                                <p>
-                                    A new perspective<br />
-                                    on modern luxury.
-                                </p>
-
-                                <div class="denza-z9-rule"></div>
-
-                                <span class="denza-z9-status"> COMING SOON </span>
-
-                                <a href="#z9-interest" class="denza-z9-button">
-                                    REGISTER YOUR INTEREST
-                                    <span aria-hidden="true">→</span>
-                                </a>
-                            </div>
-
-                            <span class="denza-z9-side-note">
-                                ELEGANCE<br />
-                                INTELLIGENCE<br />
-                                A WIDER TOMORROW
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- HIGHLIGHTS -->
-                    <div class="denza-z9-highlights">
-                        <div class="container">
-                            <div class="denza-z9-highlight-grid">
-                                <article class="denza-z9-highlight">
-                                    <figure>
-                                        <img
-                                            src="assets/images/denza/z9/z9-detail-lamp.jpg"
-                                            alt="DENZA Z9 rear light detail"
-                                            loading="lazy"
-                                        />
-                                    </figure>
-
-                                    <span class="denza-z9-index">01</span>
-
-                                    <h3>DISTINCTIVE PRESENCE</h3>
-
-                                    <p>
-                                        A refined and progressive design that commands attention
-                                        from every angle.
-                                    </p>
-
-                                    <div class="denza-z9-small-rule"></div>
-                                </article>
-
-                                <article class="denza-z9-highlight">
-                                    <figure>
-                                        <img
-                                            src="assets/images/denza/z9/z9-highlight.jpg"
-                                            alt="DENZA Z9 rear exterior"
-                                            loading="lazy"
-                                        />
-                                    </figure>
-
-                                    <span class="denza-z9-index">02</span>
-
-                                    <h3>INTELLIGENT PERFORMANCE</h3>
-
-                                    <p>
-                                        Engineered with advanced technology for a smoother, smarter,
-                                        and more confident drive.
-                                    </p>
-
-                                    <div class="denza-z9-small-rule"></div>
-                                </article>
-
-                                <article class="denza-z9-highlight">
-                                    <figure>
-                                        <img
-                                            src="assets/images/denza/z9/z9-interior.webp"
-                                            alt="DENZA Z9 interior"
-                                            loading="lazy"
-                                        />
-                                    </figure>
-
-                                    <span class="denza-z9-index">03</span>
-
-                                    <h3>MODERN LUXURY</h3>
-
-                                    <p>
-                                        A sophisticated interior designed to elevate every journey.
-                                    </p>
-
-                                    <div class="denza-z9-small-rule"></div>
-                                </article>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- INTEREST / FORM -->
-                    <div class="denza-z9-interest" id="z9-interest">
-                        <div class="denza-z9-interest-image">
-                            <img
-                                src="assets/images/denza/z9/z9-back.webp"
-                                alt="DENZA Z9 front exterior"
-                                loading="lazy"
-                            />
-
-                            <span class="denza-z9-interest-label">
-                                MORE<br />
-                                TO DISCOVER<br />
-                                SOON
-                            </span>
-                        </div>
-
-                        <div class="denza-z9-interest-copy">
-                            <span class="denza-z9-eyebrow">DENZA Z9</span>
-
-                            <h3>BE THE FIRST TO KNOW.</h3>
-
-                            <p>
-                                Discover more about the DENZA Z9 as it arrives. Register your
-                                interest and Dodo will be in touch with you.
-                            </p>
-
-                            <form class="denza-z9-form">
-                                <label>
-                                    <span class="sr-only">Name</span>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        placeholder="Your Name *"
-                                        required
-                                    />
-                                </label>
-
-                                <label>
-                                    <span class="sr-only">WhatsApp Number</span>
-                                    <input
-                                        type="tel"
-                                        name="whatsapp"
-                                        placeholder="WhatsApp Number *"
-                                        required
-                                    />
-                                </label>
-
-                                <label>
-                                    <span class="sr-only">Email Address</span>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        placeholder="Email Address (Optional)"
-                                    />
-                                </label>
-
-                                <button type="submit" class="denza-z9-submit">
-                                    REGISTER YOUR INTEREST
-                                    <span aria-hidden="true">→</span>
-                                </button>
-                            </form>
-
-                            <p class="denza-z9-privacy">
-                                Your details will only be used to contact you regarding the DENZA
-                                Z9.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- CLOSING VISUAL -->
-                    <div class="denza-z9-closing">
-                        <img
-                            src="assets/images/denza/z9/tomorrow.png"
-                            alt="DENZA Z9 interior"
-                            loading="lazy"
-                        />
-
-                        <div class="denza-z9-closing-overlay"></div>
-
-                        <div class="denza-z9-closing-copy">
-                            <span>A QUIETER</span>
-                            <span>TOMORROW.</span>
-                            <div class="denza-z9-small-rule"></div>
-                        </div>
-                    </div>
-
-                    <div class="model-footer-line">
-                        <span>Technology drives elegance</span>
-                        <span>DENZA Z9</span>
-                    </div>
-                </section>
-
-                <!-- =========================================================
-                ABOUT DODO
-                ========================================================= -->
                 <section class="about-dodo-section" id="about-dodo">
                     <div class="about-dodo-visual">
                         <img
@@ -1180,7 +532,6 @@
                                     rel="noopener noreferrer"
                                 >
                                     TALK TO DODO
-                                    <span aria-hidden="true">→</span>
                                 </a>
                             </div>
                         </div>
@@ -1250,7 +601,7 @@
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                GET DIRECTIONS <span aria-hidden="true">→</span>
+                                GET DIRECTIONS
                             </a>
                         </div>
                     </div>
@@ -1266,7 +617,7 @@
                         </a>
                         <a
                             class="dealer-experience-item dealer-experience-item--link"
-                            href="https://wa.me/6288294745477?text=Hi%20Dodo%2C%20I%27d%20like%20to%20arrange%20a%20test%20drive%20with%20the%20DENZA%20D9."
+                            href="https://wa.me/6288294745477?text=Hi%20Dodo%2C%20I%27d%20like%20to%20arrange%20a%20test%20drive%20with%20the%20DENZA."
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -1281,16 +632,15 @@
                         </div>
                     </div>
                 </section>
+
                 <section id="test-drive"></section>
             </div>
         </main>
-
         <footer class="site-footer">
             <div class="container">
                 <p>© 2026 Dodo Automotive</p>
             </div>
         </footer>
-
         <script src="js/main.js"></script>
     </body>
 </html>

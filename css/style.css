@@ -162,6 +162,176 @@ a {
     transform-origin: left;
 }
 
+/* ---------- Models Dropdown Interaction ---------- */
+
+.nav-models {
+    position: relative;
+}
+
+.nav-models-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    width: 190px;
+    padding: 12px 0;
+    background: rgba(8, 9, 10, 0.98);
+    border: 1px solid var(--color-border-soft);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    transform: translate(-50%, -8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity var(--transition-fast),
+        transform var(--transition-fast),
+        visibility var(--transition-fast);
+}
+
+/* Transparent hover bridge between Models and dropdown */
+.nav-models::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: -12px;
+    right: -12px;
+    height: 8px;
+}
+
+.nav-models:hover .nav-models-menu,
+.nav-models:focus-within .nav-models-menu,
+.nav-models.is-open .nav-models-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+}
+
+.nav-models-menu a {
+    display: block;
+    padding: 10px 18px;
+    color: var(--color-text-soft);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.nav-models-menu a:hover {
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.nav-models-menu a::after {
+    display: none;
+}
+
+/* =========================================================
+   MODELS DROPDOWN
+========================================================= */
+
+.nav-models {
+    position: relative;
+}
+
+.nav-models-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    position: relative;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-text-soft);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.nav-models-toggle:hover,
+.nav-models.is-open .nav-models-toggle {
+    color: var(--color-text);
+}
+
+.nav-models-toggle::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -9px;
+    width: calc(100% - 18px);
+    height: 1px;
+    background: var(--color-gold);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-base);
+}
+
+.nav-models-toggle:hover::after,
+.nav-models.is-open .nav-models-toggle::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.nav-models-chevron {
+    font-size: 0.78rem;
+    line-height: 1;
+    transform: translateY(-1px);
+    transition: transform var(--transition-fast);
+}
+
+.nav-models.is-open .nav-models-chevron {
+    transform: rotate(180deg) translateY(1px);
+}
+
+.nav-models-menu {
+    position: absolute;
+    top: calc(100% + 22px);
+    left: 50%;
+    width: 190px;
+    padding: 12px 0;
+    background: rgba(8, 9, 10, 0.98);
+    border: 1px solid var(--color-border-soft);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    transform: translate(-50%, -8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity var(--transition-fast),
+        transform var(--transition-fast),
+        visibility var(--transition-fast);
+}
+
+.nav-models:hover .nav-models-menu,
+.nav-models:focus-within .nav-models-menu,
+.nav-models.is-open .nav-models-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+}
+
+.nav-models-menu a {
+    display: block;
+    padding: 13px 20px;
+    color: var(--color-text-soft);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.nav-models-menu a::after {
+    display: none;
+}
+
+.nav-models-menu a:hover {
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.04);
+}
+
 /* ---------- Header CTA ---------- */
 .nav-cta {
     display: inline-flex;
@@ -283,7 +453,7 @@ a {
     .homepage.is-hero-video-playing .hero h1,
     .homepage.is-hero-video-playing .hero-description {
         opacity: 0;
-        visibility: hidden;
+        visibility: visible;
         pointer-events: none;
     }
 }
@@ -851,6 +1021,59 @@ a {
 }
 
 @media (max-width: 900px) {
+    .nav-models {
+        width: 100%;
+    }
+
+    .nav-models-toggle {
+        width: 100%;
+        justify-content: space-between;
+        padding-block: 14px;
+        font-size: 0.95rem;
+    }
+
+    .nav-models-toggle::after {
+        display: none;
+    }
+
+    .nav-models-menu {
+        position: static;
+        width: 100%;
+        padding: 0;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        transform: none;
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        overflow: hidden;
+        pointer-events: none;
+        transition:
+            opacity var(--transition-fast),
+            max-height var(--transition-base),
+            visibility var(--transition-fast);
+    }
+
+    .nav-models:hover .nav-models-menu,
+    .nav-models:focus-within .nav-models-menu {
+        transform: none;
+    }
+
+    .nav-models.is-open .nav-models-menu {
+        opacity: 1;
+        visibility: visible;
+        max-height: 220px;
+        pointer-events: auto;
+    }
+
+    .nav-models-menu a {
+        padding: 10px 16px;
+        color: var(--color-text-muted);
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+    }
+
     .hero-stage {
         min-height: 760px;
     }

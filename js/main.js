@@ -3,6 +3,91 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainNav = document.querySelector('.main-nav');
     const navLinks = mainNav?.querySelectorAll('a');
 
+    const modelsNav = document.querySelector('.nav-models');
+    const modelsToggle = document.querySelector('.nav-models-toggle');
+    const modelsMenu = document.querySelector('.nav-models-menu');
+
+    let modelsCloseTimer = null;
+
+    const clearModelsCloseTimer = () => {
+        if (modelsCloseTimer) {
+            clearTimeout(modelsCloseTimer);
+            modelsCloseTimer = null;
+        }
+    };
+
+    const openModelsMenu = () => {
+        clearModelsCloseTimer();
+
+        modelsNav?.classList.add('is-open');
+        modelsToggle?.setAttribute('aria-expanded', 'true');
+    };
+
+    const closeModelsMenu = () => {
+        clearModelsCloseTimer();
+
+        modelsNav?.classList.remove('is-open');
+        modelsToggle?.setAttribute('aria-expanded', 'false');
+    };
+
+    const scheduleModelsClose = () => {
+        clearModelsCloseTimer();
+
+        modelsCloseTimer = setTimeout(() => {
+            closeModelsMenu();
+        }, 3000);
+    };
+
+    if (modelsNav && modelsToggle && modelsMenu) {
+        const canHover = window.matchMedia('(hover: hover)').matches;
+
+        /*
+         * Desktop / hover-capable devices:
+         * Models opens immediately on hover.
+         * Menu stays open while pointer is inside Models + dropdown.
+         * Closes 3 seconds after pointer leaves the whole area.
+         */
+        if (canHover) {
+            modelsNav.addEventListener('mouseenter', openModelsMenu);
+            modelsNav.addEventListener('mouseleave', scheduleModelsClose);
+        }
+
+        /*
+         * Click remains available for accessibility and
+         * non-hover interaction.
+         */
+        modelsToggle.addEventListener('click', (event) => {
+            event.stopPropagation();
+
+            const isOpen = modelsNav.classList.contains('is-open');
+
+            if (isOpen) {
+                closeModelsMenu();
+            } else {
+                openModelsMenu();
+            }
+        });
+
+        modelsMenu.addEventListener('mouseenter', openModelsMenu);
+
+        modelsMenu.addEventListener('click', (event) => {
+            if (event.target.closest('a')) {
+                closeModelsMenu();
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!modelsNav.contains(event.target)) {
+                closeModelsMenu();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeModelsMenu();
+            }
+        });
+    }
     /* =====================================================
        MOBILE DEVICE DETECTION
     ===================================================== */
@@ -120,6 +205,7 @@ if (d9ExperienceSlider && d9ExperienceSlides.length && d9ExperienceDots.length) 
 /* =====================================================
    PAGE 1 — HERO MODEL CAROUSEL
 ===================================================== */
+
 const heroModels = [
     {
         key: 'd9',
@@ -135,7 +221,7 @@ const heroModels = [
         name: 'DENZA B5',
         positioning: 'A Bolder Perspective',
         exploreLabel: 'EXPLORE DENZA B5',
-        exploreTarget: '#b5',
+        exploreTarget: 'b5.html',
     },
     {
         key: 'z9',
@@ -143,17 +229,16 @@ const heroModels = [
         name: 'DENZA Z9',
         positioning: 'A Higher Horizon',
         exploreLabel: 'EXPLORE DENZA Z9',
-        exploreTarget: '#z9',
+        exploreTarget: 'z9.html',
     },
 ];
 
 const heroSection = document.querySelector('.hero');
 
 if (heroSection) {
+    const homepage = heroSection.closest('.homepage');
     const heroSlides = [...heroSection.querySelectorAll('.hero-slide')];
     const heroDots = [...heroSection.querySelectorAll('.hero-dot')];
-    const heroCards = [...heroSection.querySelectorAll('.hero-model-card')];
-    const heroVideos = heroSlides.map((slide) => slide.querySelector('.hero-slide-video'));
 
     const heroModelNumber = heroSection.querySelector('.hero-model-number');
     const heroModelName = heroSection.querySelector('.hero-model-name');
@@ -164,7 +249,7 @@ if (heroSection) {
 
     let activeIndex = 0;
     let imageTimer = null;
-    let activeVideoIndex = null;
+    let transitionToken = 0;
 
     const clearImageTimer = () => {
         if (imageTimer) {
@@ -173,75 +258,59 @@ if (heroSection) {
         }
     };
 
-    const stopAllHeroVideos = () => {
-        heroVideos.forEach((video, index) => {
-            if (!video) return;
+    const resetSlideVideo = (slide) => {
+        const video = slide?.querySelector('.hero-slide-video');
 
-            video.pause();
-            video.currentTime = 0;
+        if (!video) return;
 
-            heroSlides[index].classList.remove('is-video-playing');
-        });
-
-        activeVideoIndex = null;
-        heroSection.classList.remove('is-hero-video-playing');
+        video.pause();
+        video.currentTime = 0;
+        slide.classList.remove('is-video-playing');
     };
 
-    const startActiveVideo = (index) => {
-        const slide = heroSlides[index];
-        const video = heroVideos[index];
+    const stopAllHeroVideos = () => {
+        heroSlides.forEach(resetSlideVideo);
+    };
 
-        if (!slide || !video || index !== activeIndex) return;
+    const playActiveHeroVideo = (token) => {
+        if (token !== transitionToken) return;
 
-        const playVideo = () => {
-            if (index !== activeIndex) return;
+        const slide = heroSlides[activeIndex];
+        const video = slide?.querySelector('.hero-slide-video');
 
-            video.currentTime = 0;
+        if (!slide || !video) return;
 
-            const playPromise = video.play();
+        slide.classList.add('is-video-playing');
+        homepage?.classList.add('is-hero-video-playing');
 
-            if (playPromise !== undefined) {
-                playPromise
-                    .then(() => {
-                        if (index !== activeIndex) {
-                            video.pause();
-                            return;
-                        }
+        video.currentTime = 0;
 
-                        activeVideoIndex = index;
-                        slide.classList.add('is-video-playing');
-                        heroSection.classList.add('is-hero-video-playing');
-                    })
-                    .catch(() => {
-                        slide.classList.remove('is-video-playing');
-                        heroSection.classList.remove('is-hero-video-playing');
-                    });
-            }
-        };
+        const playPromise = video.play();
 
-        if (video.readyState >= 3) {
-            playVideo();
-        } else {
-            video.addEventListener('canplay', playVideo, { once: true });
-            video.load();
+        if (playPromise?.catch) {
+            playPromise.catch(() => {
+                slide.classList.remove('is-video-playing');
+                homepage?.classList.remove('is-hero-video-playing');
+            });
         }
     };
 
-    const scheduleActiveVideo = () => {
+    const scheduleActiveHeroVideo = () => {
         clearImageTimer();
 
-        imageTimer = setTimeout(() => {
-            imageTimer = null;
+        const token = transitionToken;
 
-            if (activeIndex === null) return;
-
-            startActiveVideo(activeIndex);
+        imageTimer = window.setTimeout(() => {
+            playActiveHeroVideo(token);
         }, 2500);
     };
 
-    const setHeroModel = (nextIndex) => {
+    const setHeroModel = (nextIndex, { autoplay = true } = {}) => {
         clearImageTimer();
+        transitionToken += 1;
+
         stopAllHeroVideos();
+        homepage?.classList.remove('is-hero-video-playing');
 
         activeIndex = (nextIndex + heroModels.length) % heroModels.length;
 
@@ -261,40 +330,51 @@ if (heroSection) {
             dot.setAttribute('aria-selected', String(isActive));
         });
 
-        heroCards.forEach((card, index) => {
-            const isActive = index === activeIndex;
+        if (heroModelNumber) {
+            heroModelNumber.textContent = model.number;
+        }
 
-            card.classList.toggle('is-active', isActive);
-            card.setAttribute('aria-pressed', String(isActive));
-        });
+        if (heroModelName) {
+            heroModelName.textContent = model.name;
+        }
 
-        heroModelNumber.textContent = model.number;
-        heroModelName.textContent = model.name;
-        heroModelPositioning.textContent = model.positioning;
+        if (heroModelPositioning) {
+            heroModelPositioning.textContent = model.positioning;
+        }
 
-        heroExplore.textContent = '';
+        if (heroExplore) {
+            heroExplore.textContent = '';
 
-        const label = document.createElement('span');
-        label.textContent = model.exploreLabel;
+            const label = document.createElement('span');
+            label.textContent = model.exploreLabel;
 
-        const arrow = document.createElement('span');
-        arrow.setAttribute('aria-hidden', 'true');
-        arrow.textContent = '→';
+            const arrow = document.createElement('span');
+            arrow.setAttribute('aria-hidden', 'true');
+            arrow.textContent = '→';
 
-        heroExplore.append(label, arrow);
-        heroExplore.href = model.exploreTarget;
+            heroExplore.append(label, arrow);
+            heroExplore.href = model.exploreTarget;
+        }
 
-        scheduleActiveVideo();
+        if (autoplay) {
+            scheduleActiveHeroVideo();
+        }
     };
 
-    heroVideos.forEach((video, index) => {
-        if (!video) return;
+    const advanceHeroModel = () => {
+        setHeroModel(activeIndex + 1);
+    };
 
-        video.addEventListener('ended', () => {
-            if (index !== activeIndex) return;
+    heroSlides.forEach((slide) => {
+        const video = slide.querySelector('.hero-slide-video');
 
-            stopAllHeroVideos();
-            setHeroModel(activeIndex + 1);
+        video?.addEventListener('ended', () => {
+            if (!slide.classList.contains('is-active')) return;
+
+            slide.classList.remove('is-video-playing');
+            homepage?.classList.remove('is-hero-video-playing');
+
+            advanceHeroModel();
         });
     });
 
@@ -308,12 +388,6 @@ if (heroSection) {
 
     heroDots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
-            setHeroModel(index);
-        });
-    });
-
-    heroCards.forEach((card, index) => {
-        card.addEventListener('click', () => {
             setHeroModel(index);
         });
     });
