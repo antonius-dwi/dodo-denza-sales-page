@@ -5245,21 +5245,26 @@ body.is-mobile-device .mobile-whatsapp-button {
     bottom: 18px;
     z-index: 9999;
 
-    width: 66px;
-    height: 66px;
+    width: 165px;
+    height: 165px;
 
     display: grid;
     place-items: center;
 
-    border-radius: 50%;
-    background: #8a6a2f;
+    border-radius: 35%;
+    background: #25d366;
     color: #ffffff;
 
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
 }
 
 body.is-mobile-device .mobile-whatsapp-button svg {
-    width: 36px;
-    height: 36px;
+    width: 115px;
+    height: 115px;
     fill: currentColor;
+}
+
+/* Hide homepage lineup section */
+.denza-lineup-section {
+    display: none;
 }
