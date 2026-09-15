@@ -404,3 +404,117 @@ if (heroSection) {
 
     setHeroModel(0);
 }
+
+const b5Hero = document.querySelector('.denza-b5-hero');
+const b5HeroVideo = document.querySelector('.denza-b5-hero-video');
+
+if (b5Hero && b5HeroVideo) {
+    const isDesktop = window.matchMedia('(min-width: 901px)');
+
+    let b5HeroTimer = null;
+
+    const resetB5Hero = () => {
+        if (b5HeroTimer) {
+            clearTimeout(b5HeroTimer);
+            b5HeroTimer = null;
+        }
+
+        b5Hero.classList.remove('is-video-active');
+        b5HeroVideo.pause();
+        b5HeroVideo.currentTime = 0;
+    };
+
+    const startB5Video = () => {
+        if (!isDesktop.matches) {
+            resetB5Hero();
+            return;
+        }
+
+        b5Hero.classList.add('is-video-active');
+
+        b5HeroVideo.currentTime = 0;
+
+        const playPromise = b5HeroVideo.play();
+
+        if (playPromise) {
+            playPromise.catch(() => {
+                resetB5Hero();
+            });
+        }
+    };
+
+    const scheduleB5Video = () => {
+        resetB5Hero();
+
+        if (!isDesktop.matches) {
+            return;
+        }
+
+        b5HeroTimer = setTimeout(startB5Video, 4000);
+    };
+
+    b5HeroVideo.addEventListener('ended', scheduleB5Video);
+
+    if (isDesktop.matches) {
+        scheduleB5Video();
+    }
+
+    isDesktop.addEventListener('change', () => {
+        scheduleB5Video();
+    });
+}
+
+const z9Hero = document.querySelector('.denza-z9-hero');
+const z9HeroVideo = document.querySelector('.denza-z9-hero-video');
+
+if (z9Hero && z9HeroVideo) {
+    const isDesktop = window.matchMedia('(min-width: 901px)');
+    let z9HeroTimer = null;
+
+    const resetZ9Hero = () => {
+        if (z9HeroTimer) {
+            clearTimeout(z9HeroTimer);
+            z9HeroTimer = null;
+        }
+
+        z9Hero.classList.remove('is-video-active');
+        z9HeroVideo.pause();
+        z9HeroVideo.currentTime = 0;
+    };
+
+    const startZ9Video = () => {
+        if (!isDesktop.matches) {
+            resetZ9Hero();
+            return;
+        }
+
+        z9Hero.classList.add('is-video-active');
+        z9HeroVideo.currentTime = 0;
+
+        const playPromise = z9HeroVideo.play();
+
+        if (playPromise) {
+            playPromise.catch(() => {
+                resetZ9Hero();
+            });
+        }
+    };
+
+    const scheduleZ9Video = () => {
+        resetZ9Hero();
+
+        if (!isDesktop.matches) {
+            return;
+        }
+
+        z9HeroTimer = setTimeout(startZ9Video, 2000);
+    };
+
+    z9HeroVideo.addEventListener('ended', scheduleZ9Video);
+
+    if (isDesktop.matches) {
+        scheduleZ9Video();
+    }
+
+    isDesktop.addEventListener('change', scheduleZ9Video);
+}

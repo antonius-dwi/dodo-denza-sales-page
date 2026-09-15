@@ -1655,14 +1655,39 @@ button:focus-visible {
    WHY D9
 ========================================================= */
 .why-d9-section {
-    padding: 140px 0 160px;
+    padding: 20px 0 160px;
     background: #08090a;
     color: #ffffff;
 }
 
 .why-d9-intro {
-    max-width: 760px;
-    margin-bottom: 100px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    gap: 48px;
+    align-items: center;
+    margin-bottom: 34px;
+}
+
+.why-d9-intro-copy {
+    padding-top: 38px;
+}
+
+.why-d9-video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 0;
+    overflow: hidden;
+    background: #050607;
+}
+
+.why-d9-video video {
+    display: block;
+    width: 100%;
+    height: 110%;
+    object-fit: cover;
+    object-position: center;
+    transform: translateY(-2%);
 }
 
 .section-eyebrow {
@@ -1750,7 +1775,17 @@ button:focus-visible {
     }
 
     .why-d9-intro {
+        grid-template-columns: 1fr;
+        gap: 34px;
         margin-bottom: 64px;
+    }
+
+    .why-d9-intro-copy {
+        padding-top: 0;
+    }
+
+    .why-d9-video {
+        aspect-ratio: 16 / 10;
     }
 
     .section-eyebrow {
@@ -2144,6 +2179,30 @@ body.is-mobile-device .why-d9-section .container {
 body.is-mobile-device .why-d9-intro {
     max-width: 820px;
     margin-bottom: 90px;
+}
+
+body.is-mobile-device .why-d9-intro {
+    max-width: none;
+    display: block;
+    margin-bottom: 64px;
+}
+
+body.is-mobile-device .why-d9-intro-copy {
+    padding-top: 0;
+}
+
+body.is-mobile-device .why-d9-video {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    margin-top: 34px;
+}
+
+body.is-mobile-device .why-d9-video video {
+    width: 100%;
+    height: 110%;
+    object-fit: cover;
+    object-position: center;
+    transform: translateY(-2%);
 }
 
 body.is-mobile-device .why-d9-intro .section-eyebrow {
@@ -2903,6 +2962,39 @@ body.is-mobile-device .technology-safety-pillar-image img {
     object-position: center 42%;
 }
 
+@media (min-width: 901px) {
+    .denza-b5-hero > img,
+    .denza-b5-hero-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center 42%;
+    }
+
+    .denza-b5-hero > img {
+        opacity: 1;
+        transition: opacity 900ms ease;
+    }
+
+    .denza-b5-hero-video {
+        z-index: 0;
+        opacity: 0;
+        pointer-events: none;
+        object-fit: cover;
+        transition: opacity 900ms ease;
+    }
+
+    .denza-b5-hero.is-video-active > img {
+        opacity: 0;
+    }
+
+    .denza-b5-hero.is-video-active .denza-b5-hero-video {
+        opacity: 1;
+    }
+}
+
 .denza-b5-hero-overlay {
     position: absolute;
     inset: 0;
@@ -3030,6 +3122,22 @@ body.is-mobile-device .technology-safety-pillar-image img {
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.78);
     text-align: left;
+}
+
+.denza-b5-video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #050607;
+}
+
+.denza-b5-video video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .denza-b5-highlights {
@@ -3229,6 +3337,20 @@ body.is-mobile-device .technology-safety-pillar-image img {
     }
 }
 
+@media (max-width: 600px) {
+    .denza-b5-video {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+body.is-mobile-device .denza-b5-video {
+    aspect-ratio: 16 / 9;
+}
+
+body.is-mobile-device .denza-b5-video video {
+    object-fit: contain;
+}
+
 /* =========================================================
    DENZA Z9 — COMING SOON
 ========================================================= */
@@ -3284,6 +3406,38 @@ body.is-mobile-device .technology-safety-pillar-image img {
     justify-content: space-between;
     padding-top: 30px;
     padding-bottom: 36px;
+}
+
+@media (min-width: 901px) {
+    .denza-z9-hero > img,
+    .denza-z9-hero-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
+
+    .denza-z9-hero > img {
+        opacity: 1;
+        transition: opacity 900ms ease;
+    }
+
+    .denza-z9-hero-video {
+        z-index: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 900ms ease;
+    }
+
+    .denza-z9-hero.is-video-active > img {
+        opacity: 0;
+    }
+
+    .denza-z9-hero.is-video-active .denza-z9-hero-video {
+        opacity: 1;
+    }
 }
 
 .denza-z9-hero-copy {
@@ -3647,6 +3801,10 @@ body.is-mobile-device .technology-safety-pillar-image img {
     .denza-z9-interest-copy {
         padding-left: 34px;
         padding-right: 34px;
+    }
+
+    .denza-z9-hero-video {
+        display: none;
     }
 }
 
@@ -4612,4 +4770,496 @@ body.is-mobile-device .technology-safety-pillar-image img {
         border-color: var(--color-gold);
         color: #080808;
     }
+}
+
+/* =========================================================
+   TESTIMONIAL
+========================================================= */
+
+.testimonial-section {
+    position: relative;
+    background: #050607;
+    color: var(--color-text);
+    overflow: hidden;
+}
+
+/* ---------- Hero ---------- */
+
+.testimonial-hero {
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-top: 1px solid var(--color-border-soft);
+}
+
+.testimonial-hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.testimonial-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3, 5, 7, 0.98) 0%,
+            rgba(3, 5, 7, 0.82) 34%,
+            rgba(3, 5, 7, 0.38) 65%,
+            rgba(3, 5, 7, 0.08) 100%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(3, 5, 7, 0.25) 0%,
+            rgba(3, 5, 7, 0.15) 60%,
+            rgba(3, 5, 7, 0.72) 100%
+        );
+}
+
+.testimonial-hero-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 72px;
+    padding-bottom: 72px;
+}
+
+.testimonial-hero-content .section-eyebrow,
+.testimonial-section-heading .section-eyebrow,
+.testimonial-recognition-intro .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    color: var(--color-gold);
+}
+
+.testimonial-hero-content .section-eyebrow::after,
+.testimonial-recognition-intro .section-eyebrow::after {
+    content: '';
+    width: 130px;
+    height: 1px;
+    background: var(--color-gold);
+    opacity: 0.8;
+}
+
+.testimonial-hero-content h2 {
+    max-width: 760px;
+    margin: 18px 0 20px;
+    font-family: 'Times New Roman', Georgia, serif;
+    font-size: clamp(3.4rem, 6vw, 6.2rem);
+    font-weight: 400;
+    line-height: 0.94;
+    letter-spacing: -0.045em;
+}
+
+.testimonial-hero-content p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1rem;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+}
+
+/* ---------- Customer Delivery ---------- */
+
+.testimonial-delivery {
+    position: relative;
+    padding: 52px 0 68px;
+    background: #050607;
+}
+
+.testimonial-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 26px;
+}
+
+.testimonial-heading-line {
+    width: 150px;
+    height: 1px;
+    background: var(--color-gold);
+    opacity: 0.8;
+}
+
+.testimonial-delivery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.testimonial-photo {
+    margin: 0;
+}
+
+.testimonial-photo img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1.48 / 1;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.testimonial-photo:nth-child(3) img {
+    object-position: center 25%;
+}
+
+.testimonial-photo figcaption,
+.testimonial-award figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 11px;
+}
+
+.testimonial-photo figcaption strong {
+    font-family: var(--font-sans);
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.testimonial-photo figcaption span,
+.testimonial-award figcaption span {
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+/* ---------- Recognition ---------- */
+
+.testimonial-recognition {
+    position: relative;
+    padding: 64px 0 70px;
+    border-top: 1px solid var(--color-border-soft);
+    background:
+        radial-gradient(circle at 15% 100%, rgba(172, 132, 57, 0.13), transparent 34%), #080a0b;
+}
+
+.testimonial-recognition-layout {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.8fr);
+    gap: 70px;
+    align-items: start;
+}
+
+.testimonial-recognition-intro {
+    padding-top: 12px;
+}
+
+.testimonial-recognition-intro h2 {
+    margin: 20px 0 20px;
+    font-family: 'Times New Roman', Georgia, serif;
+    font-size: clamp(2.8rem, 4.2vw, 4.7rem);
+    font-weight: 400;
+    line-height: 0.94;
+    letter-spacing: -0.045em;
+}
+
+.testimonial-recognition-intro p {
+    max-width: 430px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+
+.testimonial-awards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.testimonial-award {
+    margin: 0;
+}
+
+.testimonial-award-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 280px;
+    padding: 12px;
+    background: #111315;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.testimonial-award-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.testimonial-award figcaption strong {
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+/* ---------- Closing CTA ---------- */
+
+.testimonial-closing {
+    border-top: 1px solid var(--color-border-soft);
+    background: #050607;
+}
+
+.testimonial-closing-inner {
+    min-height: 126px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.testimonial-closing-copy {
+    position: relative;
+    padding-left: 42px;
+}
+
+.testimonial-closing-copy::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 3px;
+    background: var(--color-gold);
+}
+
+.testimonial-closing-copy > span {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color-gold);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+}
+
+.testimonial-closing-copy h2 {
+    margin: 0;
+    font-family: 'Times New Roman', Georgia, serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+}
+
+.testimonial-closing-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    min-width: 220px;
+    padding: 17px 22px;
+    background: #c9a45d;
+    color: #080909;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition:
+        transform var(--transition-fast),
+        background var(--transition-fast);
+}
+
+.testimonial-closing-cta:hover {
+    transform: translateY(-2px);
+    background: #d7b36c;
+}
+
+.testimonial-closing-cta:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 4px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+    .testimonial-hero {
+        min-height: 460px;
+    }
+
+    .testimonial-hero-content {
+        padding-top: 58px;
+        padding-bottom: 58px;
+    }
+
+    .testimonial-hero-content h2 {
+        max-width: 620px;
+    }
+
+    .testimonial-delivery {
+        padding: 58px 0 66px;
+    }
+
+    .testimonial-delivery-grid {
+        grid-template-columns: 1fr;
+        gap: 34px;
+    }
+
+    .testimonial-photo img {
+        aspect-ratio: 1.55 / 1;
+    }
+
+    .testimonial-recognition {
+        padding: 66px 0 76px;
+    }
+
+    .testimonial-recognition-layout {
+        grid-template-columns: 1fr;
+        gap: 44px;
+    }
+
+    .testimonial-recognition-intro p {
+        max-width: 600px;
+    }
+
+    .testimonial-award-image {
+        height: 260px;
+    }
+}
+
+@media (max-width: 600px) {
+    .testimonial-hero {
+        min-height: 500px;
+    }
+
+    .testimonial-hero-image {
+        object-position: 64% center;
+    }
+
+    .testimonial-hero-overlay {
+        background: linear-gradient(
+            180deg,
+            rgba(3, 5, 7, 0.72) 0%,
+            rgba(3, 5, 7, 0.62) 42%,
+            rgba(3, 5, 7, 0.96) 100%
+        );
+    }
+
+    .testimonial-hero-content {
+        align-self: flex-end;
+        padding-top: 80px;
+        padding-bottom: 48px;
+    }
+
+    .testimonial-hero-content h2 {
+        font-size: clamp(2.7rem, 12vw, 4rem);
+        line-height: 0.95;
+    }
+
+    .testimonial-hero-content p {
+        font-size: 0.86rem;
+        line-height: 1.6;
+    }
+
+    .testimonial-section-heading {
+        margin-bottom: 22px;
+    }
+
+    .testimonial-heading-line {
+        flex: 1;
+    }
+
+    .testimonial-awards-grid {
+        grid-template-columns: 1fr;
+        gap: 34px;
+    }
+
+    .testimonial-award-image {
+        height: auto;
+        min-height: 330px;
+    }
+
+    .testimonial-closing-inner {
+        min-height: auto;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 30px;
+        padding-top: 44px;
+        padding-bottom: 44px;
+    }
+
+    .testimonial-closing-copy {
+        padding-left: 28px;
+    }
+
+    .testimonial-closing-cta {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   MOBILE WHATSAPP ACTION
+========================================================= */
+
+.mobile-whatsapp-button {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .mobile-whatsapp-button {
+        display: none;
+    }
+
+    body.is-mobile-device .mobile-whatsapp-button {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        z-index: 1000;
+
+        width: 52px;
+        height: 52px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 50%;
+        background: #25d366;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+
+        color: #fff;
+    }
+
+    body.is-mobile-device .mobile-whatsapp-button svg {
+        width: 27px;
+        height: 27px;
+        fill: currentColor;
+    }
+}
+
+.mobile-whatsapp-button {
+    display: none;
+}
+
+body.is-mobile-device .mobile-whatsapp-button {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 9999;
+
+    width: 66px;
+    height: 66px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+    background: #8a6a2f;
+    color: #ffffff;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+body.is-mobile-device .mobile-whatsapp-button svg {
+    width: 36px;
+    height: 36px;
+    fill: currentColor;
 }
